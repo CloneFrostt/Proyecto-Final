@@ -1,7 +1,7 @@
 package Entidades;
 public class Libros {
    private int idLibro;
-   private int isbn;
+   private String isbn;
    private String Titulo;
    private String Autor;
    private int Anio;
@@ -9,7 +9,7 @@ public class Libros {
    private String Editorial;
    private boolean Estado;
 
-    public Libros(int idLibro, int isbn, String Titulo, String Autor, int Anio, String Tipo, String Editorial, boolean Estado) {
+    public Libros(int idLibro, String isbn, String Titulo, String Autor, int Anio, String Tipo, String Editorial, boolean Estado) {
         this.idLibro = idLibro;
         this.isbn = isbn;
         this.Titulo = Titulo;
@@ -20,7 +20,7 @@ public class Libros {
         this.Estado = Estado;
     }
 
-    public Libros(int isbn, String Titulo, String Autor, int Anio, String Tipo, String Editorial, boolean Estado) {
+    public Libros(String isbn, String Titulo, String Autor, int Anio, String Tipo, String Editorial, boolean Estado) {
         this.isbn = isbn;
         this.Titulo = Titulo;
         this.Autor = Autor;
@@ -41,11 +41,11 @@ public class Libros {
         this.idLibro = idLibro;
     }
 
-    public int getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(int isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
@@ -99,7 +99,6 @@ public class Libros {
 
     @Override
     public String toString() {
-        return "Libros{" + "idLibro=" + idLibro + ", isbn=" + isbn + ", Titulo=" + Titulo + ", Autor=" + Autor + ", Anio=" + Anio + ", Tipo=" + Tipo + ", Editorial=" + Editorial + ", Estado=" + Estado + '}';
-    }
-    
+        return "Libros{" + "isbn=" + isbn + ", Titulo=" + Titulo + ", Autor=" + Autor + ", Anio=" + Anio + ", Tipo=" + Tipo + ", Editorial=" + Editorial + '}';
+    } 
 }
