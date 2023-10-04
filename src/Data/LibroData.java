@@ -58,22 +58,22 @@ public class LibroData {
         }
     }
 
-    public void modificarLibro(Libros libro) {
-        String sql = "UPDATE libro SET  titulo=?, autor=?,tipo=?,anio=?,editorial=?"
+ public void modificarLibro(Libros libro) {
+        String sql = "UPDATE libro SET  Autor=?,Anio=?,Tipo=?,Editorial=?"
                 + "WHERE idLibro=?";
         PreparedStatement ps = null;
 
         try {
             ps = con.prepareStatement(sql);
 
-            ps.setString(1, libro.getTitulo());
-            ps.setString(2, libro.getAutor());
+            ps.setString(1, libro.getAutor());
+            ps.setInt(2, libro.getAnio());
             ps.setString(3, libro.getTipo());
-            ps.setInt(4, libro.getAnio());
-            ps.setString(5, libro.getEditorial());
-            ps.setInt(6, libro.getIdLibro());
+            ps.setString(4, libro.getEditorial());
+            ps.setInt(5, libro.getIdLibro());
             int exito = ps.executeUpdate();
-
+            System.out.println(exito);
+            System.out.println(libro.getIdLibro());
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Modificado Exitosamente.");
             } else {
