@@ -2,14 +2,26 @@ package Entidades;
 public class Ejemplar {
    private int idEjemplar;
    private int Codigo;
-   private Libros idLibro;
-   private  EstadoEjemplar Estado;
+   private int idLibro;
+   private  int Estado;
+   private int Cantidad;
 
-    public Ejemplar(int idEjemplar, int Codigo, Libros idLibro, EstadoEjemplar Estado) {
+    public Ejemplar(int idEjemplar, int Codigo, int idLibro, int Estado,int Cantidad) {
         this.idEjemplar = idEjemplar;
         this.Codigo = Codigo;
         this.idLibro = idLibro;
         this.Estado = Estado;
+        this.Cantidad=Cantidad;
+    }
+
+    public Ejemplar(int Codigo, int idLibro, int Estado, int Cantidad) {
+        this.Codigo = Codigo;
+        this.idLibro = idLibro;
+        this.Estado = Estado;
+        this.Cantidad = Cantidad;
+    }
+
+    public Ejemplar() {
     }
 
     public int getIdEjemplar() {
@@ -20,11 +32,11 @@ public class Ejemplar {
         return Codigo;
     }
 
-    public Libros getIdLibro() {
+    public int getIdLibro() {
         return idLibro;
     }
 
-    public EstadoEjemplar isEstado() {
+    public int isEstado() {
         return Estado;
     }
 
@@ -36,18 +48,30 @@ public class Ejemplar {
         this.Codigo = Codigo;
     }
 
-    public void setIdLibro(Libros idLibro) {
+    public void setIdLibro(int idLibro) {
         this.idLibro = idLibro;
     }
 
-    public void setEstado(EstadoEjemplar Estado) {
+    public void setEstado(int Estado) {
         this.Estado = Estado;
+        
+        
+    }
+
+    public int getCantidad() {
+        return Cantidad;
+    }
+
+    public void setCantidad(int Cantidad) {
+        this.Cantidad = Cantidad;
     }
 
     @Override
     public String toString() {
-        return "Ejemplar{" + "idEjemplar=" + idEjemplar + ", Codigo=" + Codigo + ", idLibro=" + idLibro + ", Estado=" + Estado + '}';
+        return "Ejemplar{" + "idEjemplar=" + idEjemplar + ", Codigo=" + Codigo + ", idLibro=" + idLibro + ", Estado=" + Estado + ", Cantidad=" + Cantidad + '}';
     }
+
+   
    
 
 }
