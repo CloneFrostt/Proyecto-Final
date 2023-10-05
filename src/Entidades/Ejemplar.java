@@ -2,10 +2,10 @@ package Entidades;
 public class Ejemplar {
    private int idEjemplar;
    private int Codigo;
-   private int idLibro;
+   private Libros idLibro;
    private  EstadoEjemplar Estado;
 
-    public Ejemplar(int idEjemplar, int Codigo, int idLibro, EstadoEjemplar Estado) {
+    public Ejemplar(int idEjemplar, int Codigo, Libros idLibro, EstadoEjemplar Estado) {
         this.idEjemplar = idEjemplar;
         this.Codigo = Codigo;
         this.idLibro = idLibro;
@@ -20,7 +20,7 @@ public class Ejemplar {
         return Codigo;
     }
 
-    public int getIdLibro() {
+    public Libros getIdLibro() {
         return idLibro;
     }
 
@@ -36,7 +36,7 @@ public class Ejemplar {
         this.Codigo = Codigo;
     }
 
-    public void setIdLibro(int idLibro) {
+    public void setIdLibro(Libros idLibro) {
         this.idLibro = idLibro;
     }
 

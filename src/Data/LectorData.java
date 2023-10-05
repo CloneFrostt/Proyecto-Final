@@ -1,15 +1,9 @@
 package Data;
-import Data.Conexion;
-import Entidades.Lector;
-import Entidades.Libros;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JOptionPane;
+import Data.*;
+import Entidades.*;
+import java.sql.*;
+import java.util.*;
+import javax.swing.*;
 
 public class LectorData {
 
@@ -112,4 +106,54 @@ public class LectorData {
         }
         return lector;
     }
+       public Lector buscarLector(int idLector){
+           Lector lec = null;
+        try {
+            String sql = "SELECT * FROM lector WHERE idLector=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idLector);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                lec = new Lector();
+                lec.setIdLector(idLector);
+                lec.setNroSocio(rs.getInt("NroSocio"));
+                  lec.setNombre(rs.getString("Nombre"));
+                lec.setDomicilio(rs.getString("Domicilio"));
+                lec.setMail(rs.getString("mail"));
+                lec.setEstado(rs.getBoolean("Estado"));
+                        
+            }else {
+                JOptionPane.showMessageDialog(null, "El Lector no existe");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Lector" + ex.getMessage());
+        }
+        return lec;
+       }
+       public Lector bucarLectorPorNroSocio(int nroSocio){
+           Lector lec = null;
+           try{
+           String sql = "SELECT * FROM lector WHERE NroSocio=?";
+                 PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, nroSocio);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                lec = new Lector();
+                lec.setIdLector(nroSocio);
+                lec.setNroSocio(rs.getInt("NroSocio"));
+                  lec.setNombre(rs.getString("Nombre"));
+                lec.setDomicilio(rs.getString("Domicilio"));
+                lec.setMail(rs.getString("mail"));
+                lec.setEstado(rs.getBoolean("Estado"));
+                        
+            }else {
+                JOptionPane.showMessageDialog(null, "El Lector no existe");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Lector" + ex.getMessage());
+        }
+        return lec;
+       }
 }

@@ -145,13 +145,13 @@ public class LibroData {
 
         return lib;
     }
-public Libros buscarLibroPorId(String idLibro) {
+public Libros buscarLibroPorId(int idLibro) {
         Libros lib = null;
         String sql = "SELECT * FROM libro WHERE idLibro=?";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, idLibro);
+            ps.setInt(1, idLibro);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
