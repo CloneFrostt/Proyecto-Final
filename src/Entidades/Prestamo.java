@@ -4,29 +4,28 @@ public class Prestamo {
     private int idPrestamo;
     private LocalDate FechaI;
     private LocalDate FechaF;
-    private boolean Estado;
     private int ejemplar;
     private int lector;
-     private int libro;
+    private boolean Estado;
     private int Cantidad;
 
-    public Prestamo(int idPrestamo, LocalDate FechaI, LocalDate FechaF, boolean Estado, int ejemplar, int lector,int libro, int Cantidad) {
+    public Prestamo(int idPrestamo, LocalDate FechaI, LocalDate FechaF, int ejemplar, int lector, boolean Estado, int Cantidad) {
         this.idPrestamo = idPrestamo;
         this.FechaI = FechaI;
         this.FechaF = FechaF;
         this.Estado = Estado;
         this.ejemplar = ejemplar;
         this.lector = lector;
-        this.libro = libro;
         this.Cantidad = Cantidad;
     }
 
-    public Prestamo(LocalDate FechaI, LocalDate FechaF, boolean Estado, int ejemplar, int lector) {
+    public Prestamo(LocalDate FechaI, LocalDate FechaF, int ejemplar, int lector, boolean Estado, int Cantidad) {
         this.FechaI = FechaI;
         this.FechaF = FechaF;
         this.Estado = Estado;
         this.ejemplar = ejemplar;
         this.lector = lector;
+        this.Cantidad = Cantidad;
     }
     
 
@@ -80,6 +79,8 @@ public Prestamo() {
     public void setLector(int lector) {
         this.lector = lector;
     }
+
+
   public int getCantidad() {
         return Cantidad;
     }
@@ -88,13 +89,6 @@ public Prestamo() {
         this.Cantidad = Cantidad;
     }
 
-    public int getLibro() {
-        return libro;
-    }
-
-    public void setLibro(int libro) {
-        this.libro = libro;
-    }
 
     @Override
     public String toString() {

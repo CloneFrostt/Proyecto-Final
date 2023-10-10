@@ -1,14 +1,7 @@
 package Data;
-import Entidades.Ejemplar;
-import Entidades.Lector;
-import Entidades.Libros;
-import Entidades.Prestamo;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
+import Entidades.*;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +16,9 @@ public class PrestamoData {
         con = Conexion.getConexion();
     }
 
-   public void cargarPrestamo(Prestamo pres) {
+     public void cargarPrestamo(Prestamo pres) {
 
-        String sql = "INSERT INTO prestamo(FechaI,FechaF,idEjemplar,idLector,idLibro,Estado,Cantidad)VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO prestamo(FechaI,FechaF,idEjemplar,idLector,Estado,Cantidad) VALUES (?,?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
@@ -33,9 +26,8 @@ public class PrestamoData {
             ps.setDate(2, Date.valueOf(pres.getFechaF()));
             ps.setInt(3, pres.getEjemplar());
             ps.setInt(4, pres.getLector());
-            ps.setInt(5, pres.getLibro());
-            ps.setBoolean(6, pres.isEstado());
-            ps.setInt(7, pres.getCantidad());
+            ps.setBoolean(5, pres.isEstado());
+            ps.setInt(6, pres.getCantidad());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -64,7 +56,6 @@ public class PrestamoData {
                 pres.setFechaF(rs.getDate("FechaF").toLocalDate());
                 pres.setEjemplar(rs.getInt("idEjemplar"));
                 pres.setLector(rs.getInt("idLector"));
-                pres.setLibro(rs.getInt("idLibro"));
                 pres.setEstado(rs.getBoolean("Estado"));
                 pres.setCantidad(rs.getInt("Cantidad"));
 
@@ -92,7 +83,6 @@ public class PrestamoData {
                 pres.setFechaF(rs.getDate("FechaF").toLocalDate());
                 pres.setEjemplar(rs.getInt("idEjemplar"));
                 pres.setLector(rs.getInt("idLector"));
-                pres.setLibro(rs.getInt("idLibrp"));
                 pres.setEstado(rs.getBoolean("Estado"));
                 pres.setCantidad(rs.getInt("Cantidad"));
 
@@ -112,7 +102,7 @@ public class PrestamoData {
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setDate(1, Date.valueOf(P.getFechaF()));
-            ps.setInt(1, P.getCantidad());
+            ps.setInt(2, P.getCantidad());
             ps.setInt(3, P.getIdPrestamo());
             ps.executeUpdate(sql);
 
@@ -123,7 +113,11 @@ public class PrestamoData {
  public List<Libros>listaLibrosPrestados(){
     List<Libros> libros = new ArrayList<>();
  
-          String sql="SELECT Titulo, Autor, Anio FROM libro l,prestamo p  WHERE  l.idLibro = p.idLibro";
+       //String sql="SELECT Titulo, Autor, Anio FROM libro l,prestamo p  WHERE  l.idLibro = p.idLibro";
+       String sql="SELECT libro.Titulo,Autor,prestamo.idPrestamo,FechaI,ejemplar.idEjemplar,prestamo.idLector" +
+                      "FROM libro INNER JOIN ejemplar ON libro.idLibro = ejemplar.idLibro" +
+                       "INNER JOIN prestamo  ON ejemplar.idEjemplar = prestamo.idEjemplar;";
+
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ResultSet rs=ps.executeQuery();
@@ -150,7 +144,10 @@ public class PrestamoData {
   public List<Libros>listaLibrosPrestados(LocalDate fecha){
     List<Libros> libros = new ArrayList<>();
  
-          String sql="SELECT Titulo, Autor, Anio FROM libro l,prestamo p  WHERE  l.idLibro = p.idLibro AND FechaI = ? ";
+         // String sql="SELECT Titulo, Autor, Anio FROM libro l,prestamo p  WHERE  l.idLibro = p.idLibro AND FechaI = ? ";
+           String sql="SELECT libro.Titulo,Autor,Tipo, prestamo.idPrestamo,FechaI, ejemplar.idEjemplar,prestamo.idLector " +
+                      " FROM libro INNER JOIN ejemplar ON libro.idLibro = ejemplar.idLibro " +
+                       " INNER JOIN prestamo  ON ejemplar.idEjemplar = prestamo.idEjemplar  AND FechaI = ? ";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setDate(1, Date.valueOf(fecha));
