@@ -53,9 +53,7 @@ public class Ejemplar {
     }
 
     public void setEstado(int Estado) {
-        this.Estado = Estado;
-        
-        
+        this.Estado = Estado;   
     }
 
     public int getCantidad() {
@@ -70,8 +68,4 @@ public class Ejemplar {
     public String toString() {
         return "Ejemplar{" + "idEjemplar=" + idEjemplar + ", Codigo=" + Codigo + ", idLibro=" + idLibro + ", Estado=" + Estado + ", Cantidad=" + Cantidad + '}';
     }
-
-   
-   
-
 }

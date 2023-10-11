@@ -64,8 +64,8 @@ public class main {
 //ed.eliminarEjemplar(1);
 PrestamoData pd =new PrestamoData();
 
-Prestamo p1 = new Prestamo(1,LocalDate.of(2022,5,12),LocalDate.of(2022,7,12),2,1,true,1);
-pd.cargarPrestamo(p1);
+Prestamo p1 = new Prestamo(2,LocalDate.of(2022,5,12),LocalDate.of(2022,7,12),11,2,true,1);
+//pd.cargarPrestamo(p1);
 //for (Prestamo p :pd.listadoDePrestOtorgados()){
  //   System.out.println(p.toString());
 //}

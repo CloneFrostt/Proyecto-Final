@@ -38,7 +38,7 @@ public class PrestamoData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Prestamo");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Prestamo" + ex.getMessage());
         }
     }
 
