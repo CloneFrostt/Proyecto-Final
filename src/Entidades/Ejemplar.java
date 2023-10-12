@@ -2,11 +2,11 @@ package Entidades;
 public class Ejemplar {
    private int idEjemplar;
    private int Codigo;
-    private Libros idLibro;
-   private  int Estado;
+   private int idLibro;
+   private  String Estado;
    private int Cantidad;
 
-    public Ejemplar(int idEjemplar, int Codigo, Libros idLibro, int Estado,int Cantidad) {
+    public Ejemplar(int idEjemplar, int Codigo, int idLibro, String Estado,int Cantidad) {
         this.idEjemplar = idEjemplar;
         this.Codigo = Codigo;
         this.idLibro = idLibro;
@@ -14,9 +14,9 @@ public class Ejemplar {
         this.Cantidad=Cantidad;
     }
 
-    public Ejemplar(int Codigo, Libros idLibro, int Estado, int Cantidad) {
+    public Ejemplar(int Codigo, int idLibro, String Estado, int Cantidad) {
         this.Codigo = Codigo;
-      this.idLibro = idLibro;
+        this.idLibro = idLibro;
         this.Estado = Estado;
         this.Cantidad = Cantidad;
     }
@@ -32,11 +32,11 @@ public class Ejemplar {
         return Codigo;
     }
 
-    public Libros getIdLibro() {
+    public int getIdLibro() {
         return idLibro;
     }
 
-    public int isEstado() {
+    public String isEstado() {
         return Estado;
     }
 
@@ -48,12 +48,14 @@ public class Ejemplar {
         this.Codigo = Codigo;
     }
 
-    public void setIdLibro(Libros idLibro) {
+    public void setIdLibro(int idLibro) {
         this.idLibro = idLibro;
     }
 
-    public void setEstado(int Estado) {
-        this.Estado = Estado;   
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
+        
+        
     }
 
     public int getCantidad() {
@@ -66,6 +68,12 @@ public class Ejemplar {
 
     @Override
     public String toString() {
-        return  idEjemplar + " Codigo:" + Codigo + idLibro.getTitulo() + " Estado:" + Estado + "Cantidad:" + Cantidad ;
+        return "Ejemplar{" + "idEjemplar=" + idEjemplar + ", Codigo=" + Codigo + ", idLibro=" + idLibro + ", Estado=" + Estado + ", Cantidad=" + Cantidad + '}';
     }
+
+
+
+   
+   
+
 }

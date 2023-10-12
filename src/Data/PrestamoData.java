@@ -55,7 +55,7 @@ public class PrestamoData {
                 pres.setIdPrestamo(rs.getInt("idPrestamo"));
                 pres.setFechaI(rs.getDate("FechaI").toLocalDate());
                 pres.setFechaF(rs.getDate("FechaF").toLocalDate());
-                Ejemplar E= ed.buscarEjemplarPorId(rs.getInt("idEjemplar"));
+                Ejemplar E= ed.buscarEjemplarPorCodigo(rs.getInt("idEjemplar"));
                 pres.setEjemplar((E));
                 Lector L = ld.buscarLector(rs.getInt("idLector"));
                 pres.setLector((L));
@@ -84,7 +84,7 @@ public class PrestamoData {
                 pres.setIdPrestamo(rs.getInt("idPrestamo"));
                 pres.setFechaI(rs.getDate("FechaI").toLocalDate());
                 pres.setFechaF(rs.getDate("FechaF").toLocalDate());
-              Ejemplar E= ed.buscarEjemplarPorId(rs.getInt("idEjemplar"));
+              Ejemplar E= ed.buscarEjemplarPorCodigo(rs.getInt("idEjemplar"));
                 pres.setEjemplar((E));
                 Lector L = ld.buscarLector(rs.getInt("idLector"));
                 pres.setLector((L));

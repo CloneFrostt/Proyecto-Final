@@ -5,17 +5,25 @@
  */
 package BibliotecaView;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import javax.swing.JOptionPane;
+import Data.EjemplarData;
+import Entidades.Ejemplar;
+import java.util.Date;
+
 /**
  *
  * @author User
  */
 public class EjemplarView extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form Ejemplar
-     */
+    private EjemplarData ejeData;
+    private Ejemplar ejeActual = null;
+
     public EjemplarView() {
         initComponents();
+         ejeData = new EjemplarData();
     }
 
     /**
@@ -41,6 +49,7 @@ public class EjemplarView extends javax.swing.JInternalFrame {
         jBEliminar = new javax.swing.JButton();
         jBSalir = new javax.swing.JButton();
         jBBuscar = new javax.swing.JButton();
+        jBLimpiar = new javax.swing.JButton();
 
         jLabel1.setText("Ejemplares");
 
@@ -55,14 +64,46 @@ public class EjemplarView extends javax.swing.JInternalFrame {
         jCEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Prestado", "Retraso", "Reparacion", "Disponible en Biblioteca", " ", " " }));
 
         jBAgregar.setText("Agregar");
+        jBAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAgregarActionPerformed(evt);
+            }
+        });
 
         jBModificar.setText("Modificar");
+        jBModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBModificarActionPerformed(evt);
+            }
+        });
 
         jBEliminar.setText("Eliminar");
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarActionPerformed(evt);
+            }
+        });
 
         jBSalir.setText("Salir");
+        jBSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalirActionPerformed(evt);
+            }
+        });
 
         jBBuscar.setText("Buscar");
+        jBBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBuscarActionPerformed(evt);
+            }
+        });
+
+        jBLimpiar.setText("Limpiar");
+        jBLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBLimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -92,7 +133,9 @@ public class EjemplarView extends javax.swing.JInternalFrame {
                                     .addComponent(jTextIdLibro)
                                     .addComponent(jCEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBBuscar))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBBuscar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jBLimpiar, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jBAgregar)
@@ -113,11 +156,16 @@ public class EjemplarView extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addComponent(jTextCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBBuscar))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextIdLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jTextIdLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jBLimpiar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jCEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -125,7 +173,7 @@ public class EjemplarView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTextCantEj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBAgregar)
                     .addComponent(jBModificar)
@@ -137,11 +185,109 @@ public class EjemplarView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
+
+        try {
+         
+            int codigo = Integer.parseInt(jTextCodigo.getText());
+            int idLibro = Integer.parseInt(jTextIdLibro.getText());
+            String estado =(jCEstado.getSelectedItem().toString());
+            int cantidad = Integer.parseInt(jTextCantEj.getText());
+           
+           
+            if (ejeActual == null) {
+                ejeActual = new Ejemplar(codigo,idLibro,estado,cantidad);
+                ejeData.cargarEjemplar(ejeActual);
+            } else {
+                ejeActual.setCodigo(codigo);
+                ejeActual.setIdLibro(idLibro);
+                ejeActual.setEstado(estado);
+                ejeActual.setCantidad(cantidad);
+                ejeData.cargarEjemplar(ejeActual);
+            }
+        } catch (NumberFormatException nf) {
+            JOptionPane.showMessageDialog(this, "Usted no ingreso un Codigo valido");
+
+        }  
+    }//GEN-LAST:event_jBAgregarActionPerformed
+
+    private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
+        try {
+            int codigo = Integer.parseInt(jTextCodigo.getText());
+            ejeActual = ejeData.buscarEjemplarPorCodigo(codigo);
+            if (ejeActual != null) {
+                jTextIdLibro.setText(ejeActual.getIdLibro()+"");
+                jCEstado.setSelectedItem(ejeActual.isEstado()+"");
+                jTextCantEj.setText(ejeActual.getCantidad()+ "");
+            }
+        } catch (NumberFormatException nf) {
+            JOptionPane.showMessageDialog(this, "Usted no ingreso un numro");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBBuscarActionPerformed
+
+    private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
+              this.dispose();        
+    }//GEN-LAST:event_jBSalirActionPerformed
+
+    private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
+             try {
+            
+            int codigo = Integer.parseInt(jTextCodigo.getText());
+            int idLibro = Integer.parseInt(jTextIdLibro.getText());
+            String estado =(jCEstado.getSelectedItem().toString());
+            int cantidad = Integer.parseInt(jTextCantEj.getText());
+           
+           
+            if (ejeActual == null) {
+                ejeActual = new Ejemplar(codigo,idLibro,estado,cantidad);
+                ejeData.modificarEjemplar(ejeActual);
+            } else {
+                ejeActual.setCodigo(codigo);
+                ejeActual.setIdLibro(idLibro);
+                ejeActual.setEstado(estado);
+                ejeActual.setCantidad(cantidad);
+                ejeData.modificarEjemplar(ejeActual);
+            }
+        } catch (NumberFormatException nf) {
+            JOptionPane.showMessageDialog(this, "Usted no ingreso un Codigo valido");
+
+        }  
+    }//GEN-LAST:event_jBModificarActionPerformed
+
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+         try {
+            if (ejeActual != null) {
+                ejeData.eliminarEjemplar(ejeActual.getIdEjemplar());
+            } else {
+                JOptionPane.showMessageDialog(null, "Error, usted no ha seleccionado ningun ejemplar.");
+            }
+        } catch (NumberFormatException nf) {
+            JOptionPane.showMessageDialog(this, "Usted no ingreso un numero");
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_jBEliminarActionPerformed
+
+    private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
+                                           
+    
+        limpiarCampos();
+        ejeActual = null;
+    }                                       
+       private void limpiarCampos(){
+           jTextCodigo.setText("");
+           jTextIdLibro.setText("");
+           jTextCantEj.setText("");
+          
+         
+      // TODO add your handling code here:
+    }//GEN-LAST:event_jBLimpiarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregar;
     private javax.swing.JButton jBBuscar;
     private javax.swing.JButton jBEliminar;
+    private javax.swing.JButton jBLimpiar;
     private javax.swing.JButton jBModificar;
     private javax.swing.JButton jBSalir;
     private javax.swing.JComboBox<String> jCEstado;
