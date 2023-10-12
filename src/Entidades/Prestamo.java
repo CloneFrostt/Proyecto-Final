@@ -92,7 +92,7 @@ public Prestamo() {
 
     @Override
     public String toString() {
-        return "Prestamo{" + "FechaI=" + FechaI + ", FechaF=" + FechaF + ", Estado=" + Estado + ", ejemplar=" + ejemplar + ", lector=" + lector + '}';
+        return  FechaI +  " , " + FechaF + " - " + ejemplar.getIdEjemplar() + " - " + lector.getNombre() ;
     }
      
 }

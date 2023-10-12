@@ -99,6 +99,6 @@ public class Libros {
 
     @Override
     public String toString() {
-        return "Libros{" + "isbn=" + isbn + ", Titulo=" + Titulo + ", Autor=" + Autor + ", Anio=" + Anio + ", Tipo=" + Tipo + ", Editorial=" + Editorial + '}';
+        return  isbn + " - " + Titulo + "," + Autor + "-" + Anio + "," + Tipo + "," + Editorial;
     } 
 }

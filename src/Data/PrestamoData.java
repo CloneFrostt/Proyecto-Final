@@ -103,14 +103,19 @@ public class PrestamoData {
     }
 
     public void devolucionPrestamo(Prestamo P) {
-        String sql = "UPDATE prestamo SET FechaF= ?,Cantidad =?, Estado = 0 WHERE idPrestamo=? AND Estado = 1";
+        String sql = "UPDATE prestamo SET FechaF= ?,Cantidad =?, Estado = ? WHERE idPrestamo=?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setDate(1, Date.valueOf(P.getFechaF()));
             ps.setInt(2, P.getCantidad());
-            ps.setInt(3, P.getIdPrestamo());
-            ps.executeUpdate(sql);
-
+            ps.setBoolean(3, false);
+            ps.setInt(4, P.getIdPrestamo());
+           int exito = ps.executeUpdate();
+           if(exito > 0){
+               JOptionPane.showMessageDialog(null, "Prestamo devuelto con exito.");
+           }else {
+               JOptionPane.showMessageDialog(null, "No ingreso ningun prestamo.");
+           }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Prestamo" + ex.getMessage());
         }
@@ -118,10 +123,11 @@ public class PrestamoData {
  public List<Libros>listaLibrosPrestados(){
     List<Libros> libros = new ArrayList<>();
  
-       //String sql="SELECT Titulo, Autor, Anio FROM libro l,prestamo p  WHERE  l.idLibro = p.idLibro";
-       String sql="SELECT libro.Titulo,Autor,prestamo.idPrestamo,FechaI,ejemplar.idEjemplar,prestamo.idLector" +
-                      "FROM libro INNER JOIN ejemplar ON libro.idLibro = ejemplar.idLibro" +
-                       "INNER JOIN prestamo  ON ejemplar.idEjemplar = prestamo.idEjemplar;";
+     String sql="SELECT Titulo,Autor ,Anio, Tipo FROM libro INNER JOIN ejemplar ON libro.idLibro = ejemplar.idEjemplar "
+             + " INNER JOIN prestamo ON ejemplar.idEjEmplar = prestamo.idEjemplar ";
+   // String sql="SELECT ejemplar.idLibro, prestamo.idPrestamo, FechaI" +
+     //                "FROM ejemplar,prestamo WHERE libro.idLibro = ejemplar.idLibro" +
+      //               " AND ejemplar.idEjemplar = prestamo.idEjemplar;";
 
         try {
             PreparedStatement ps=con.prepareStatement(sql);
@@ -150,9 +156,8 @@ public class PrestamoData {
     List<Libros> libros = new ArrayList<>();
  
          // String sql="SELECT Titulo, Autor, Anio FROM libro l,prestamo p  WHERE  l.idLibro = p.idLibro AND FechaI = ? ";
-           String sql="SELECT libro.Titulo,Autor,Tipo, prestamo.idPrestamo,FechaI, ejemplar.idEjemplar,prestamo.idLector " +
-                      " FROM libro INNER JOIN ejemplar ON libro.idLibro = ejemplar.idLibro " +
-                       " INNER JOIN prestamo  ON ejemplar.idEjemplar = prestamo.idEjemplar  AND FechaI = ? ";
+           String sql="SELECT Titulo,Autor ,Anio, Tipo FROM libro INNER JOIN ejemplar ON libro.idLibro = ejemplar.idEjemplar "
+             + " INNER JOIN prestamo ON ejemplar.idEjEmplar = prestamo.idEjemplar  AND FechaI = ? ";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setDate(1, Date.valueOf(fecha));
@@ -182,7 +187,7 @@ public class PrestamoData {
  public List<Lector>listaLectoresQuePidieronPrestamo(){
     List<Lector> lector = new ArrayList<>();
  
-          String sql="SELECT NroSocio,Nombre,Domicilio FROM lector l,prestamo p WHERE  l.idLector = p.idLector ";
+          String sql="SELECT NroSocio,Nombre,Domicilio, idPrestamo, FechaI, FechaF FROM lector,prestamo WHERE  lector.idLector = prestamo.idLector ";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
            
@@ -225,16 +230,11 @@ public class PrestamoData {
                 lec.setDomicilio(rs.getString("Domicilio"));
                 lec.setMail(rs.getString("mail"));
                 lec.setEstado(rs.getBoolean("Estado"));
-
-               
-                lector.add(lec);
-            
+                lector.add(lec);  
             }
-            ps.close();
-            
+            ps.close();        
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Prestamo" + ex.getMessage());
-        
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Prestamo" + ex.getMessage());      
  }return lector;
 }
 }

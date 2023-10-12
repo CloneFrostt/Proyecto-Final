@@ -77,6 +77,6 @@ public class Lector {
 
     @Override
     public String toString() {
-        return "Lector{" + "idLector=" + idLector + ", NroSocio=" + NroSocio + ", nombre=" + nombre + ", domicilio=" + domicilio + ", mail=" + mail + ", estado=" + estado + '}';
+        return  idLector + ", NroSocio:" + NroSocio + " - " + nombre + ", " + domicilio + ", " + mail ;
     }
 }
