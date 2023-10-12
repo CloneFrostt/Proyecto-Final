@@ -10,7 +10,8 @@ import javax.swing.JOptionPane;
 public class PrestamoData {
 
     private Connection con = null;
-
+    private EjemplarData ed= new EjemplarData();
+    private LectorData ld = new LectorData();
     public PrestamoData() {
 
         con = Conexion.getConexion();
@@ -24,8 +25,8 @@ public class PrestamoData {
 
             ps.setDate(1, Date.valueOf(pres.getFechaI()));
             ps.setDate(2, Date.valueOf(pres.getFechaF()));
-            ps.setInt(3, pres.getEjemplar());
-            ps.setInt(4, pres.getLector());
+            ps.setInt(3, pres.getEjemplar().getIdEjemplar());
+            ps.setInt(4, pres.getLector().getIdLector());
             ps.setBoolean(5, pres.isEstado());
             ps.setInt(6, pres.getCantidad());
             ps.executeUpdate();
@@ -54,8 +55,10 @@ public class PrestamoData {
                 pres.setIdPrestamo(rs.getInt("idPrestamo"));
                 pres.setFechaI(rs.getDate("FechaI").toLocalDate());
                 pres.setFechaF(rs.getDate("FechaF").toLocalDate());
-                pres.setEjemplar(rs.getInt("idEjemplar"));
-                pres.setLector(rs.getInt("idLector"));
+                Ejemplar E= ed.buscarEjemplarPorId(rs.getInt("idEjemplar"));
+                pres.setEjemplar((E));
+                Lector L = ld.buscarLector(rs.getInt("idLector"));
+                pres.setLector((L));
                 pres.setEstado(rs.getBoolean("Estado"));
                 pres.setCantidad(rs.getInt("Cantidad"));
 
@@ -81,8 +84,10 @@ public class PrestamoData {
                 pres.setIdPrestamo(rs.getInt("idPrestamo"));
                 pres.setFechaI(rs.getDate("FechaI").toLocalDate());
                 pres.setFechaF(rs.getDate("FechaF").toLocalDate());
-                pres.setEjemplar(rs.getInt("idEjemplar"));
-                pres.setLector(rs.getInt("idLector"));
+              Ejemplar E= ed.buscarEjemplarPorId(rs.getInt("idEjemplar"));
+                pres.setEjemplar((E));
+                Lector L = ld.buscarLector(rs.getInt("idLector"));
+                pres.setLector((L));
                 pres.setEstado(rs.getBoolean("Estado"));
                 pres.setCantidad(rs.getInt("Cantidad"));
 
@@ -98,7 +103,7 @@ public class PrestamoData {
     }
 
     public void devolucionPrestamo(Prestamo P) {
-        String sql = "UPDATE prestamo SET FechaF= ?,Cantidad =? WHERE idPrestamo=?";
+        String sql = "UPDATE prestamo SET FechaF= ?,Cantidad =?, Estado = 0 WHERE idPrestamo=? AND Estado = 1";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setDate(1, Date.valueOf(P.getFechaF()));

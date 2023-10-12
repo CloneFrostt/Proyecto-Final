@@ -9,7 +9,7 @@ import javax.swing.*;
 
 public class EjemplarData {
     private Connection con = null;
-
+    private LibroData ld= new LibroData();
     public EjemplarData() {
         
         con = Conexion.getConexion();
@@ -19,7 +19,7 @@ public class EjemplarData {
         try {
             PreparedStatement ps= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, eje.getCodigo());
-            ps.setInt(2, eje.getIdLibro());
+            ps.setInt(2, eje.getIdLibro().getIdLibro());
             ps.setInt(3,eje.isEstado());
             ps.setInt(4,eje.getCantidad());
             ps.executeUpdate();
@@ -44,7 +44,7 @@ public class EjemplarData {
             Ejemplar ej =new Ejemplar();
             ej.setIdEjemplar(rs.getInt("idEjemplar"));
             ej.setCodigo(rs.getInt("Codigo"));
-            ej.setIdLibro(rs.getInt("idLibro"));
+            ej.setIdLibro((Libros) rs.getObject("idLibro"));
             ej.setEstado(rs.getInt("Estado"));
             ej.setCantidad(rs.getInt("Cantidad"));
             ejemplar.add(ej);
@@ -67,7 +67,7 @@ public class EjemplarData {
             Ejemplar ej =new Ejemplar();
             ej.setIdEjemplar(rs.getInt("idEjemplar"));
             ej.setCodigo(rs.getInt("Codigo"));
-            ej.setIdLibro(rs.getInt("idLibro"));
+             ej.setIdLibro((Libros) rs.getObject("idLibro"));
             ej.setEstado(rs.getInt("Estado"));
             ej.setCantidad(rs.getInt("Cantidad"));
             ejemplar.add(ej);
@@ -90,7 +90,7 @@ public class EjemplarData {
             Ejemplar ej =new Ejemplar();
             ej.setIdEjemplar(rs.getInt("idEjemplar"));
             ej.setCodigo(rs.getInt("Codigo"));
-            ej.setIdLibro(rs.getInt("idLibro"));
+             ej.setIdLibro((Libros) rs.getObject("idLibro"));
             ej.setEstado(rs.getInt("Estado"));
             ej.setCantidad(rs.getInt("Cantidad"));
             ejemplar.add(ej);
@@ -113,7 +113,7 @@ public class EjemplarData {
             Ejemplar ej =new Ejemplar();
             ej.setIdEjemplar(rs.getInt("idEjemplar"));
             ej.setCodigo(rs.getInt("Codigo"));
-            ej.setIdLibro(rs.getInt("idLibro"));
+             ej.setIdLibro((Libros) rs.getObject("idLibro"));
             ej.setEstado(rs.getInt("Estado"));
             ej.setCantidad(rs.getInt("Cantidad"));
             ejemplar.add(ej);
@@ -156,7 +156,7 @@ public class EjemplarData {
 
             ps.setInt(1, ej.getCodigo());
 
-            ps.setInt(2, ej.getIdLibro());
+            ps.setInt(2, ej.getIdLibro().getIdLibro());
             ps.setInt(3,ej.isEstado());
             ps.setInt(4, ej.getCantidad());
             ps.setInt(5, ej.getIdEjemplar());
@@ -184,7 +184,8 @@ public class EjemplarData {
             eje =new Ejemplar();
             eje.setIdEjemplar(rs.getInt("idEjemplar"));
             eje.setCodigo(rs.getInt("Codigo"));
-            eje.setIdLibro(rs.getInt("idLibro"));
+            Libros L= ld.buscarLibroPorId(rs.getInt("idLibro"));
+            eje.setIdLibro(L);
             eje.setEstado(rs.getInt("Estado"));
             eje.setCantidad(rs.getInt("Cantidad"));
                         

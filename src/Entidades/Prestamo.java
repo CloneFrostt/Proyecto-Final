@@ -4,12 +4,12 @@ public class Prestamo {
     private int idPrestamo;
     private LocalDate FechaI;
     private LocalDate FechaF;
-    private int ejemplar;
-    private int lector;
+    private Ejemplar ejemplar;
+    private Lector lector;
     private boolean Estado;
     private int Cantidad;
 
-    public Prestamo(int idPrestamo, LocalDate FechaI, LocalDate FechaF, int ejemplar, int lector, boolean Estado, int Cantidad) {
+    public Prestamo(int idPrestamo, LocalDate FechaI, LocalDate FechaF, Ejemplar ejemplar, Lector lector, boolean Estado, int Cantidad) {
         this.idPrestamo = idPrestamo;
         this.FechaI = FechaI;
         this.FechaF = FechaF;
@@ -19,7 +19,7 @@ public class Prestamo {
         this.Cantidad = Cantidad;
     }
 
-    public Prestamo(LocalDate FechaI, LocalDate FechaF, int ejemplar, int lector, boolean Estado, int Cantidad) {
+    public Prestamo(LocalDate FechaI, LocalDate FechaF, Ejemplar ejemplar, Lector lector, boolean Estado, int Cantidad) {
         this.FechaI = FechaI;
         this.FechaF = FechaF;
         this.Estado = Estado;
@@ -64,19 +64,19 @@ public Prestamo() {
         this.Estado = Estado;
     }
 
-    public int getEjemplar() {
+    public Ejemplar getEjemplar() {
         return ejemplar;
     }
 
-    public void setEjemplar(int ejemplar) {
+    public void setEjemplar(Ejemplar ejemplar) {
         this.ejemplar = ejemplar;
     }
 
-    public int getLector() {
+    public Lector getLector() {
         return lector;
     }
 
-    public void setLector(int lector) {
+    public void setLector(Lector lector) {
         this.lector = lector;
     }
 
