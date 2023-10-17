@@ -9,7 +9,9 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import javax.swing.JOptionPane;
 import Data.EjemplarData;
+import Data.LibroData;
 import Entidades.Ejemplar;
+import Entidades.Libros;
 import java.util.Date;
 
 /**
@@ -18,12 +20,13 @@ import java.util.Date;
  */
 public class EjemplarView extends javax.swing.JInternalFrame {
 
-    private EjemplarData ejeData;
+    private EjemplarData ejeData = new EjemplarData();
     private Ejemplar ejeActual = null;
+    private LibroData ld =new LibroData();
 
     public EjemplarView() {
         initComponents();
-         ejeData = new EjemplarData();
+        ejeData = new EjemplarData();
     }
 
     /**
@@ -188,19 +191,19 @@ public class EjemplarView extends javax.swing.JInternalFrame {
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
 
         try {
-         
+
             int codigo = Integer.parseInt(jTextCodigo.getText());
             int idLibro = Integer.parseInt(jTextIdLibro.getText());
-            String estado =(jCEstado.getSelectedItem().toString());
+            Libros L = ld.buscarLibroPorId(idLibro);
+            String estado = (jCEstado.getSelectedItem().toString());
             int cantidad = Integer.parseInt(jTextCantEj.getText());
-           
-           
+
             if (ejeActual == null) {
-                ejeActual = new Ejemplar(codigo,idLibro,estado,cantidad);
+                ejeActual = new Ejemplar(codigo,L, estado, cantidad);
                 ejeData.cargarEjemplar(ejeActual);
             } else {
                 ejeActual.setCodigo(codigo);
-                ejeActual.setIdLibro(idLibro);
+                ejeActual.setIdLibro(L);
                 ejeActual.setEstado(estado);
                 ejeActual.setCantidad(cantidad);
                 ejeData.cargarEjemplar(ejeActual);
@@ -208,7 +211,7 @@ public class EjemplarView extends javax.swing.JInternalFrame {
         } catch (NumberFormatException nf) {
             JOptionPane.showMessageDialog(this, "Usted no ingreso un Codigo valido");
 
-        }  
+        }
     }//GEN-LAST:event_jBAgregarActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
@@ -216,9 +219,9 @@ public class EjemplarView extends javax.swing.JInternalFrame {
             int codigo = Integer.parseInt(jTextCodigo.getText());
             ejeActual = ejeData.buscarEjemplarPorCodigo(codigo);
             if (ejeActual != null) {
-                jTextIdLibro.setText(ejeActual.getIdLibro()+"");
-                jCEstado.setSelectedItem(ejeActual.isEstado()+"");
-                jTextCantEj.setText(ejeActual.getCantidad()+ "");
+                jTextIdLibro.setText(ejeActual.getIdLibro() + "");
+                jCEstado.setSelectedItem(ejeActual.isEstado() + "");
+                jTextCantEj.setText(ejeActual.getCantidad() + "");
             }
         } catch (NumberFormatException nf) {
             JOptionPane.showMessageDialog(this, "Usted no ingreso un numro");
@@ -227,24 +230,24 @@ public class EjemplarView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
-              this.dispose();        
+        this.dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
 
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
-             try {
-            
+        try {
+
             int codigo = Integer.parseInt(jTextCodigo.getText());
             int idLibro = Integer.parseInt(jTextIdLibro.getText());
-            String estado =(jCEstado.getSelectedItem().toString());
+              Libros L = ld.buscarLibroPorId(idLibro);
+            String estado = (jCEstado.getSelectedItem().toString());
             int cantidad = Integer.parseInt(jTextCantEj.getText());
-           
-           
+
             if (ejeActual == null) {
-                ejeActual = new Ejemplar(codigo,idLibro,estado,cantidad);
+                ejeActual = new Ejemplar(codigo, L, estado, cantidad);
                 ejeData.modificarEjemplar(ejeActual);
             } else {
                 ejeActual.setCodigo(codigo);
-                ejeActual.setIdLibro(idLibro);
+                ejeActual.setIdLibro(L);
                 ejeActual.setEstado(estado);
                 ejeActual.setCantidad(cantidad);
                 ejeData.modificarEjemplar(ejeActual);
@@ -252,11 +255,11 @@ public class EjemplarView extends javax.swing.JInternalFrame {
         } catch (NumberFormatException nf) {
             JOptionPane.showMessageDialog(this, "Usted no ingreso un Codigo valido");
 
-        }  
+        }
     }//GEN-LAST:event_jBModificarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-         try {
+        try {
             if (ejeActual != null) {
                 ejeData.eliminarEjemplar(ejeActual.getIdEjemplar());
             } else {
@@ -268,18 +271,17 @@ public class EjemplarView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
-                                           
-    
+
         limpiarCampos();
         ejeActual = null;
-    }                                       
-       private void limpiarCampos(){
-           jTextCodigo.setText("");
-           jTextIdLibro.setText("");
-           jTextCantEj.setText("");
-          
-         
-      // TODO add your handling code here:
+    }
+
+    private void limpiarCampos() {
+        jTextCodigo.setText("");
+        jTextIdLibro.setText("");
+        jTextCantEj.setText("");
+
+        // TODO add your handling code here:
     }//GEN-LAST:event_jBLimpiarActionPerformed
 
 

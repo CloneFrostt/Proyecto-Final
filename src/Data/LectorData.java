@@ -37,11 +37,11 @@ public class LectorData {
         }
     }
 
-    public void eliminarLector(int idLector) {
+    public void eliminarLector(int NroSocio) {
         try {
-            String sql = "UPDATE lector SET estado = 0 WHERE idLector = ? ";
+            String sql = "UPDATE lector SET Estado = 0 WHERE NroSocio= ? ";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, idLector);
+            ps.setInt(1, NroSocio);
             int fila = ps.executeUpdate();
 
             if (fila == 1) {

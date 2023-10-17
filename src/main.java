@@ -61,8 +61,8 @@ public class main {
 //Libros lib4 = ld.buscarLibroPorId(4);
 //Libros lib5 = ld.buscarLibroPorId(5);
 //Libros lib6 = ld.buscarLibroPorId(6);
-//Ejemplar e1 = new Ejemplar( 1, lib1, 1, 15);
-//       Ejemplar e2 = new Ejemplar( 2, lib2, 1, 5);
+//Ejemplar e1 = new Ejemplar( 1, lib1, "Disponible en Biblioteca", 15);
+  //     Ejemplar e2 = new Ejemplar( 2, lib2, "Reparacion", 5);
 //      Ejemplar e3 = new Ejemplar( 3, lib3, 1, 12);
 //       Ejemplar e4 = new Ejemplar( 4, lib4, 1, 9);
 //        Ejemplar e5 = new Ejemplar( 5, lib5, 1, 19);
@@ -84,7 +84,7 @@ public class main {
 //----------------------------------------------------------------------------------------------------------
 //EjemplarData ed = new EjemplarData();
 //LectorData ld = new LectorData();
-//Ejemplar e1 =ed.buscarEjemplarPorId(1);
+//Ejemplar e1 =ed.buscarEjemplarPorCodigo(1);
 //Lector l1 = ld.buscarLector(1);
 //Ejemplar e2 =ed.buscarEjemplarPorId(2);
 //Lector l2 = ld.buscarLector(2);
@@ -98,7 +98,7 @@ public class main {
 //Prestamo p3= new Prestamo(2,LocalDate.of(2023,9,21), LocalDate.of (2023,10,1),e3,l3,true,2);
 //Prestamo p4= new Prestamo(3,LocalDate.of(2023,5,2), LocalDate.of (2023,6,12),e4,l4,true,2);
 
-PrestamoData pd =new PrestamoData();
+//PrestamoData pd =new PrestamoData();
 //pd.cargarPrestamo(p1);
 //pd.cargarPrestamo(p2);
 //pd.cargarPrestamo(p3);
@@ -110,9 +110,9 @@ PrestamoData pd =new PrestamoData();
 //pd.devolucionPrestamo(p2);
 //Prestamo p = pd.buscarPrestamoPorId(1);
 //        System.out.println(p.toString());
-for (Lector p :pd.listaLectoresQuePidieronPrestamo()){
-    System.out.println(p.toString());
-}
+//for (Lector p :pd.listaLectoresQuePidieronPrestamo()){
+  //  System.out.println(p.toString());
+//}
 
     }
 

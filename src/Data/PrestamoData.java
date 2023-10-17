@@ -73,12 +73,12 @@ public class PrestamoData {
         return lector;
     }
 
-    public Prestamo buscarPrestamoPorId(int idPrestamo) {
+    public Prestamo buscarPrestamoPorId(int idLector) {
         Prestamo pres = null;
         try {
-            String sql = "SELECT * FROM prestamo WHERE idPrestamo=?";
+            String sql = "SELECT * FROM prestamo WHERE idLector=?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, idPrestamo);
+            ps.setInt(1, idLector);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 pres = new Prestamo();
@@ -239,33 +239,3 @@ public class PrestamoData {
  }return lector;
 }
 }
-/*public void otorgarPrestamo(){
-String sql="SELECT *
-FROM prestamo
-INNER JOIN ejemplar ON prestamo.cantidad = ejemplar.cantidad";
-if(ejemplar.catidad>0){
-    Prestamo pres = null;
-        try {
-            String sql = "SELECT * FROM prestamo WHERE idPrestamo=?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, idPrestamo);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                pres = new Prestamo();
-                pres.setIdPrestamo(rs.getInt("idPrestamo"));
-                pres.setFechaI(rs.getDate("FechaI").toLocalDate());
-                pres.setFechaF(rs.getDate("FechaF").toLocalDate());
-                pres.setEjemplar(rs.getInt("idEjemplar"));
-                pres.setLector(rs.getInt("idLector"));
-                pres.setEstado(rs.getBoolean("Estado"));
-
-            } else {
-                JOptionPane.showMessageDialog(null, "El Prestamo no existe");
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Prestamo" + ex.getMessage());
-        }
-        return pres;
-}
-}*/

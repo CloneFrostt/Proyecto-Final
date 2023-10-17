@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  * @author User
  */
 public class LectorView extends javax.swing.JInternalFrame {
-private LectorData ld ;
+private LectorData ld = new LectorData();
 private Lector lectorActual=null;
     /**
      * Creates new form Lector
@@ -280,6 +280,6 @@ private Lector lectorActual=null;
         jTextNombre.setText("");
         jTextDomicilio.setText("");
         jTextMail.setText("");
-        jRbuttonEstado.setSelected(true);
+        jRbuttonEstado.setSelected(false);
     }
 }

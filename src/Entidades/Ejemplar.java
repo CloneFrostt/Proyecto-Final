@@ -2,11 +2,11 @@ package Entidades;
 public class Ejemplar {
    private int idEjemplar;
    private int Codigo;
-   private int idLibro;
+   private Libros idLibro;
    private  String Estado;
    private int Cantidad;
 
-    public Ejemplar(int idEjemplar, int Codigo, int idLibro, String Estado,int Cantidad) {
+    public Ejemplar(int idEjemplar, int Codigo, Libros idLibro, String Estado,int Cantidad) {
         this.idEjemplar = idEjemplar;
         this.Codigo = Codigo;
         this.idLibro = idLibro;
@@ -14,7 +14,7 @@ public class Ejemplar {
         this.Cantidad=Cantidad;
     }
 
-    public Ejemplar(int Codigo, int idLibro, String Estado, int Cantidad) {
+    public Ejemplar(int Codigo, Libros idLibro, String Estado, int Cantidad) {
         this.Codigo = Codigo;
         this.idLibro = idLibro;
         this.Estado = Estado;
@@ -32,7 +32,7 @@ public class Ejemplar {
         return Codigo;
     }
 
-    public int getIdLibro() {
+    public Libros getIdLibro() {
         return idLibro;
     }
 
@@ -48,7 +48,7 @@ public class Ejemplar {
         this.Codigo = Codigo;
     }
 
-    public void setIdLibro(int idLibro) {
+    public void setIdLibro(Libros idLibro) {
         this.idLibro = idLibro;
     }
 
@@ -68,16 +68,9 @@ public class Ejemplar {
 
     @Override
     public String toString() {
-<<<<<<< Updated upstream
         return "Ejemplar{" + "idEjemplar=" + idEjemplar + ", Codigo=" + Codigo + ", idLibro=" + idLibro + ", Estado=" + Estado + ", Cantidad=" + Cantidad + '}';
-=======
-        return  idEjemplar + " Codigo:" + Codigo + idLibro.toString()+ " Estado:" + Estado + "Cantidad:" + Cantidad ;
->>>>>>> Stashed changes
     }
 
-
-
-   
    
 
-}
+ }
