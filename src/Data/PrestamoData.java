@@ -12,6 +12,7 @@ public class PrestamoData {
     private Connection con = null;
     private EjemplarData ed= new EjemplarData();
     private LectorData ld = new LectorData();
+   private Conexion cone = null;
     public PrestamoData() {
 
         con = Conexion.getConexion();

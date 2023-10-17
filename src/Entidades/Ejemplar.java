@@ -68,7 +68,11 @@ public class Ejemplar {
 
     @Override
     public String toString() {
+<<<<<<< Updated upstream
         return "Ejemplar{" + "idEjemplar=" + idEjemplar + ", Codigo=" + Codigo + ", idLibro=" + idLibro + ", Estado=" + Estado + ", Cantidad=" + Cantidad + '}';
+=======
+        return  idEjemplar + " Codigo:" + Codigo + idLibro.toString()+ " Estado:" + Estado + "Cantidad:" + Cantidad ;
+>>>>>>> Stashed changes
     }
 
 

@@ -177,4 +177,36 @@ public Libros buscarLibroPorId(int idLibro) {
 
         return lib;
     } 
+public Libros buscarLibroPorIsbn(String isbn) {
+        Libros lib = null;
+        String sql = "SELECT * FROM libro WHERE isbn=?";
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, isbn);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                lib = new Libros();
+                
+                lib.setIdLibro(rs.getInt("idLibro"));
+                lib.setIsbn(rs.getString("isbn"));
+                lib.setTitulo(rs.getString("Titulo"));
+                lib.setAutor(rs.getString("Autor"));
+                lib.setAnio(rs.getInt("Anio"));
+                lib.setTipo(rs.getString("Tipo"));
+                lib.setEditorial(rs.getString("Editorial"));
+                lib.setEstado(rs.getBoolean("Estado"));
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe el Libro");
+
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Libros " + ex.getMessage());
+        }
+
+        return lib;
+    } 
 }

@@ -92,7 +92,7 @@ public Prestamo() {
 
     @Override
     public String toString() {
-        return  FechaI +  " , " + FechaF + " - " + ejemplar.getIdEjemplar() + " - " + lector.getNombre() ;
+        return  FechaI +  " , " + FechaF + " - " + ejemplar.toString() + " - " + lector.toString() ;
     }
      
 }

@@ -5,12 +5,17 @@
  */
 package BibliotecaView;
 
+import Data.LibroData;
+import Entidades.Libros;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author User
  */
 public class LibroView extends javax.swing.JInternalFrame {
-
+private LibroData ld;
+private Libros libroActual = null;
     /**
      * Creates new form Libro
      */
@@ -42,8 +47,8 @@ public class LibroView extends javax.swing.JInternalFrame {
         jTextAutor = new javax.swing.JTextField();
         jTextTipo = new javax.swing.JTextField();
         jTextEditorial = new javax.swing.JTextField();
-        jBAgregar = new javax.swing.JButton();
-        jBModificar = new javax.swing.JButton();
+        jBLimpiar = new javax.swing.JButton();
+        jBGuardar = new javax.swing.JButton();
         jBEliminar = new javax.swing.JButton();
         jBSalir = new javax.swing.JButton();
         jBBuscar = new javax.swing.JButton();
@@ -64,15 +69,40 @@ public class LibroView extends javax.swing.JInternalFrame {
 
         jLabel8.setText("Estado:");
 
-        jBAgregar.setText("Agregar");
+        jBLimpiar.setText("Limpiar");
+        jBLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBLimpiarActionPerformed(evt);
+            }
+        });
 
-        jBModificar.setText("Modificar");
+        jBGuardar.setText("Guardar");
+        jBGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGuardarActionPerformed(evt);
+            }
+        });
 
         jBEliminar.setText("Eliminar");
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarActionPerformed(evt);
+            }
+        });
 
         jBSalir.setText("Salir");
+        jBSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalirActionPerformed(evt);
+            }
+        });
 
         jBBuscar.setText("Buscar");
+        jBBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,12 +142,12 @@ public class LibroView extends javax.swing.JInternalFrame {
                 .addComponent(jBBuscar)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jBAgregar)
+                .addComponent(jBLimpiar)
                 .addGap(18, 18, 18)
-                .addComponent(jBModificar)
+                .addComponent(jBGuardar)
                 .addGap(18, 18, 18)
                 .addComponent(jBEliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(jBSalir)
                 .addGap(33, 33, 33))
         );
@@ -157,8 +187,8 @@ public class LibroView extends javax.swing.JInternalFrame {
                     .addComponent(jTextEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBAgregar)
-                    .addComponent(jBModificar)
+                    .addComponent(jBLimpiar)
+                    .addComponent(jBGuardar)
                     .addComponent(jBEliminar)
                     .addComponent(jBSalir))
                 .addGap(0, 21, Short.MAX_VALUE))
@@ -167,12 +197,83 @@ public class LibroView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
+        try {
+            String isbn = jTextISBN.getText();
+            libroActual = ld.buscarLibroPorIsbn(isbn);
+            if (libroActual != null) {
+                jTextTitulo.setText(libroActual.getTitulo());
+                jTextAutor.setText(libroActual.getAutor());
+                jTextAnio.setText(libroActual.getAnio() + "");
+                jTextTipo.setText(libroActual.getTipo());
+                jTextEditorial.setText(libroActual.getEditorial());
+                jREstado.setSelected(libroActual.isEstado());
+            }
+        } catch (NumberFormatException nf) {
+            JOptionPane.showMessageDialog(this, "Usted no ingreso un numero valido");
+        }        
+    }//GEN-LAST:event_jBBuscarActionPerformed
+
+    private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
+        limpiarCampos();
+        libroActual = null;
+    }//GEN-LAST:event_jBLimpiarActionPerformed
+
+    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
+        try {
+            String isbn = jTextISBN.getText();
+            String titulo = jTextTitulo.getText();
+            String autor = jTextAutor.getText();
+            int anio = Integer.parseInt(jTextAnio.getText());
+            String tipo = jTextTipo.getText();
+            String editorial = jTextEditorial.getText();
+            if (isbn.isEmpty() || titulo.isEmpty() || autor.isEmpty() || tipo.isEmpty() || editorial.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No deben quedar campos vacios.");
+                return;
+            }
+            boolean estado = jREstado.isSelected();
+            if (libroActual == null) {
+                libroActual = new Libros(isbn, titulo, autor, anio, tipo, editorial, estado);
+                ld.cargarLibro(libroActual);
+            } else {
+                libroActual.setIsbn(isbn);
+                libroActual.setTitulo(titulo);
+                libroActual.setAutor(autor);
+                libroActual.setAnio(anio);
+                libroActual.setTipo(tipo);
+                libroActual.setEditorial(editorial);
+                libroActual.setEstado(estado);
+                ld.modificarLibro(libroActual);
+            }
+        } catch (NumberFormatException nf) {
+            JOptionPane.showMessageDialog(this, "Usted no ingreso un numero valido");
+        }        
+    }//GEN-LAST:event_jBGuardarActionPerformed
+
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+         try {
+               if(libroActual!= null){                  
+                 ld.eliminarLibro(libroActual.getIdLibro());
+                  libroActual= null;
+                   limpiarCampos();
+               }else {
+                   JOptionPane.showMessageDialog(null, "Error, usted no ha seleccionado  ningun libro.");
+               }
+        } catch (NumberFormatException nf) {
+            JOptionPane.showMessageDialog(this, "Usted no ingreso un numero valido");
+        }
+    }//GEN-LAST:event_jBEliminarActionPerformed
+
+    private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jBSalirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBAgregar;
     private javax.swing.JButton jBBuscar;
     private javax.swing.JButton jBEliminar;
-    private javax.swing.JButton jBModificar;
+    private javax.swing.JButton jBGuardar;
+    private javax.swing.JButton jBLimpiar;
     private javax.swing.JButton jBSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -190,4 +291,14 @@ public class LibroView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextTipo;
     private javax.swing.JTextField jTextTitulo;
     // End of variables declaration//GEN-END:variables
+
+    private void limpiarCampos(){
+        jTextISBN.setText("");
+        jTextTitulo.setText("");
+         jTextAutor.setText("");
+         jTextAnio.setText("");
+         jTextTipo.setText("");
+         jTextEditorial.setText("");
+         jREstado.setSelected(false);
+    }
 }
