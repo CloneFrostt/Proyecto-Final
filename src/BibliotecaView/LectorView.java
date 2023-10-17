@@ -244,7 +244,7 @@ private Lector lectorActual=null;
                    lectorActual = null;
                    limpiarCampos();
                }else {
-                   JOptionPane.showMessageDialog(null, "Error, usted no ha seleccionado a ningun alumno.");
+                   JOptionPane.showMessageDialog(null, "Error, usted no ha seleccionado a ningun Lector.");
                }
         } catch (NumberFormatException nf) {
             JOptionPane.showMessageDialog(this, "Usted no ingreso un numero de socio valido");

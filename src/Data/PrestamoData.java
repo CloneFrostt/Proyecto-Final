@@ -12,7 +12,7 @@ public class PrestamoData {
     private Connection con = null;
     private EjemplarData ed= new EjemplarData();
     private LectorData ld = new LectorData();
-   private Conexion cone = null;
+ 
     public PrestamoData() {
 
         con = Conexion.getConexion();
@@ -20,16 +20,16 @@ public class PrestamoData {
 
      public void cargarPrestamo(Prestamo pres) {
 
-        String sql = "INSERT INTO prestamo(FechaI,FechaF,idEjemplar,idLector,Estado,Cantidad) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO prestamo(Codigo,FechaI,FechaF,idEjemplar,idLector,Estado,Cantidad) VALUES (?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-
-            ps.setDate(1, Date.valueOf(pres.getFechaI()));
-            ps.setDate(2, Date.valueOf(pres.getFechaF()));
-            ps.setInt(3, pres.getEjemplar().getIdEjemplar());
-            ps.setInt(4, pres.getLector().getIdLector());
-            ps.setBoolean(5, pres.isEstado());
-            ps.setInt(6, pres.getCantidad());
+            ps.setInt(1, pres.getCodigo());
+            ps.setDate(2, Date.valueOf(pres.getFechaI()));
+            ps.setDate(3, Date.valueOf(pres.getFechaF()));
+            ps.setInt(4, pres.getEjemplar().getIdEjemplar());
+            ps.setInt(5, pres.getLector().getIdLector());
+            ps.setBoolean(6, pres.isEstado());
+            ps.setInt(7, pres.getCantidad());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -54,6 +54,7 @@ public class PrestamoData {
             while (rs.next()) {
                 Prestamo pres = new Prestamo();
                 pres.setIdPrestamo(rs.getInt("idPrestamo"));
+                pres.setCodigo(rs.getInt("Codigo"));
                 pres.setFechaI(rs.getDate("FechaI").toLocalDate());
                 pres.setFechaF(rs.getDate("FechaF").toLocalDate());
                 Ejemplar E= ed.buscarEjemplarPorCodigo(rs.getInt("idEjemplar"));
@@ -73,16 +74,17 @@ public class PrestamoData {
         return lector;
     }
 
-    public Prestamo buscarPrestamoPorId(int idLector) {
+    public Prestamo buscarPrestamoPorId(int idPrestamo) {
         Prestamo pres = null;
         try {
-            String sql = "SELECT * FROM prestamo WHERE idLector=?";
+            String sql = "SELECT * FROM prestamo WHERE idPrestamo=?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, idLector);
+            ps.setInt(1, idPrestamo);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 pres = new Prestamo();
                 pres.setIdPrestamo(rs.getInt("idPrestamo"));
+                pres.setCodigo(rs.getInt("Codigo"));
                 pres.setFechaI(rs.getDate("FechaI").toLocalDate());
                 pres.setFechaF(rs.getDate("FechaF").toLocalDate());
               Ejemplar E= ed.buscarEjemplarPorCodigo(rs.getInt("idEjemplar"));
@@ -102,15 +104,41 @@ public class PrestamoData {
         return pres;
 
     }
+  public Prestamo buscarPrestamoPorCodigo(int codigo) {
+        Prestamo pres = null;
+        try {
+            String sql = "SELECT * FROM prestamo WHERE Codigo=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, codigo);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                pres = new Prestamo();
+                pres.setIdPrestamo(rs.getInt("idPrestamo"));
+                pres.setCodigo(rs.getInt("Codigo"));
+                pres.setFechaI(rs.getDate("FechaI").toLocalDate());
+                pres.setFechaF(rs.getDate("FechaF").toLocalDate());
+              Ejemplar E= ed.buscarEjemplarPorId(rs.getInt("idEjemplar"));
+                pres.setEjemplar((E));
+                Lector L = ld.buscarLector(rs.getInt("idLector"));
+                pres.setLector((L));
+                pres.setEstado(rs.getBoolean("Estado"));
+                pres.setCantidad(rs.getInt("Cantidad"));
 
-    public void devolucionPrestamo(Prestamo P) {
-        String sql = "UPDATE prestamo SET FechaF= ?,Cantidad =?, Estado = ? WHERE idPrestamo=?";
+            } else {
+                JOptionPane.showMessageDialog(null, "El Prestamo no existe");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Prestamo" + ex.getMessage());
+        }
+        return pres;
+
+    }
+    public void devolucionPrestamo(int idPrestamo) {
+        String sql = "UPDATE prestamo SET  Estado = 0 WHERE idPrestamo=?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setDate(1, Date.valueOf(P.getFechaF()));
-            ps.setInt(2, P.getCantidad());
-            ps.setBoolean(3, false);
-            ps.setInt(4, P.getIdPrestamo());
+            ps.setInt(1, idPrestamo);
            int exito = ps.executeUpdate();
            if(exito > 0){
                JOptionPane.showMessageDialog(null, "Prestamo devuelto con exito.");
@@ -119,6 +147,29 @@ public class PrestamoData {
            }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Prestamo" + ex.getMessage());
+        }
+    }
+    
+    public void modificarPrestamo(Prestamo p){
+        String sql = " UPDATE prestamo SET FechaI, FechaF, IdEjemplar, idLector, Cantidad WHERE idPrestamo = ? ";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+            ps.setDate(1, Date.valueOf(p.getFechaI()));
+            ps.setDate(2, Date.valueOf(p.getFechaF()));
+            ps.setInt(3, p.getEjemplar().getIdEjemplar());
+            ps.setInt(4, p.getLector().getIdLector());
+            ps.setInt(5, p.getCantidad());
+            ps.setInt(6, p.getIdPrestamo());
+            int exito =ps.executeUpdate();
+            
+            if (exito > 0) {               
+                JOptionPane.showMessageDialog(null, "Prestamo modificado con exito.");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Prestamo" + ex.getMessage());
         }
     }
  public List<Libros>listaLibrosPrestados(){
@@ -188,7 +239,7 @@ public class PrestamoData {
  public List<Lector>listaLectoresQuePidieronPrestamo(){
     List<Lector> lector = new ArrayList<>();
  
-          String sql="SELECT NroSocio,Nombre,Domicilio, idPrestamo, FechaI, FechaF FROM lector,prestamo WHERE  lector.idLector = prestamo.idLector ";
+          String sql="SELECT l.NroSocio,l.Nombre,p.Codigo, p.FechaI, p.FechaF FROM prestamo p, lector l WHERE  lector.idLector = prestamo.idLector ";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
            

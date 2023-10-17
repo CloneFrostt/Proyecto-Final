@@ -2,6 +2,7 @@ package Entidades;
 import java.time.LocalDate;
 public class Prestamo {
     private int idPrestamo;
+    private int Codigo;
     private LocalDate FechaI;
     private LocalDate FechaF;
     private Ejemplar ejemplar;
@@ -9,8 +10,9 @@ public class Prestamo {
     private boolean Estado;
     private int Cantidad;
 
-    public Prestamo(int idPrestamo, LocalDate FechaI, LocalDate FechaF, Ejemplar ejemplar, Lector lector, boolean Estado, int Cantidad) {
+    public Prestamo(int idPrestamo,int Codigo, LocalDate FechaI, LocalDate FechaF, Ejemplar ejemplar, Lector lector, boolean Estado, int Cantidad) {
         this.idPrestamo = idPrestamo;
+        this.Codigo = Codigo;
         this.FechaI = FechaI;
         this.FechaF = FechaF;
         this.Estado = Estado;
@@ -19,7 +21,8 @@ public class Prestamo {
         this.Cantidad = Cantidad;
     }
 
-    public Prestamo(LocalDate FechaI, LocalDate FechaF, Ejemplar ejemplar, Lector lector, boolean Estado, int Cantidad) {
+    public Prestamo(int Codigo,LocalDate FechaI, LocalDate FechaF, Ejemplar ejemplar, Lector lector, boolean Estado, int Cantidad) {
+        this.Codigo = Codigo;
         this.FechaI = FechaI;
         this.FechaF = FechaF;
         this.Estado = Estado;
@@ -38,6 +41,14 @@ public Prestamo() {
 
     public void setIdPrestamo(int idPrestamo) {
         this.idPrestamo = idPrestamo;
+    }
+
+    public int getCodigo() {
+        return Codigo;
+    }
+
+    public void setCodigo(int Codigo) {
+        this.Codigo = Codigo;
     }
 
     public LocalDate getFechaI() {
@@ -92,7 +103,7 @@ public Prestamo() {
 
     @Override
     public String toString() {
-        return  FechaI +  " , " + FechaF + " - " + ejemplar.toString() + " - " + lector.toString() ;
+        return  Codigo + " - "+FechaI +  " , " + FechaF + " - " + ejemplar.getIdEjemplar() + " - " + lector.getNombre() ;
     }
      
 }
