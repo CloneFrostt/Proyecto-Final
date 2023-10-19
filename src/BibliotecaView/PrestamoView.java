@@ -14,19 +14,18 @@ import java.time.*;
 
 import javax.swing.*;
 
-
 public class PrestamoView extends javax.swing.JInternalFrame {
 
-private PrestamoData pd = new PrestamoData();
-private Prestamo prestamoActual =null;
-private EjemplarData ed = new EjemplarData();
-private Ejemplar ejemplarActual =null;
-private LectorData ld = new LectorData();
-private Lector lectorActual =null;
+    private PrestamoData pd = new PrestamoData();
+    private Prestamo prestamoActual = null;
+    private EjemplarData ed = new EjemplarData();
+    private Ejemplar ejemplarActual = null;
+    private LectorData ld = new LectorData();
+    private Lector lectorActual = null;
 
     public PrestamoView() {
         initComponents();
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -233,52 +232,63 @@ private Lector lectorActual =null;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
-   try {
-        int codigo = Integer.parseInt(jTCodigo.getText());
-        prestamoActual = pd.buscarPrestamoPorCodigo(codigo);
-        if(prestamoActual!= null){
-           LocalDate lc = prestamoActual.getFechaI();
-           java.util.Date date = java.util.Date.from(lc.atStartOfDay(ZoneId.systemDefault()).toInstant());
-           jDFechaI.setDate(date);
-           LocalDate lc1 = prestamoActual.getFechaF();
-           java.util.Date date1 = java.util.Date.from(lc1.atStartOfDay(ZoneId.systemDefault()).toInstant());
-           jDFechaF.setDate(date1);
-           jTIdEjemplar.setText(prestamoActual.getEjemplar().getIdEjemplar() + "");
-           jTIdLector.setText(prestamoActual.getLector().getIdLector() + "");
-           jTCantidad.setText(prestamoActual.getCantidad() + "");
-           jRBEstado.setSelected(prestamoActual.isEstado());
-       }
-        
-         } catch (NumberFormatException nf) {
+        try {
+            int codigo = Integer.parseInt(jTCodigo.getText());
+            prestamoActual = pd.buscarPrestamoPorCodigo(codigo);
+            if (prestamoActual != null) {
+                LocalDate lc = prestamoActual.getFechaI();
+                java.util.Date date = java.util.Date.from(lc.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                jDFechaI.setDate(date);
+                LocalDate lc1 = prestamoActual.getFechaF();
+                java.util.Date date1 = java.util.Date.from(lc1.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                jDFechaF.setDate(date1);
+                jTIdEjemplar.setText(prestamoActual.getEjemplar().getIdEjemplar() + "");
+                jTIdLector.setText(prestamoActual.getLector().getIdLector() + "");
+                jTCantidad.setText(prestamoActual.getCantidad() + "");
+                jRBEstado.setSelected(prestamoActual.isEstado());
+            }
+
+        } catch (NumberFormatException nf) {
             JOptionPane.showMessageDialog(this, "Usted no ingreso un codigo valido");
-    }          
+        }
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-      try {
-        int codigo = Integer.parseInt(jTCodigo.getText());
-        java.util.Date fecha = jDFechaI.getDate();
-        LocalDate FechaI = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        java.util.Date fecha1 = jDFechaF.getDate();
-        LocalDate FechaF = fecha1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        int IdEjemplar = Integer.parseInt(jTIdEjemplar.getText());
-        ejemplarActual = ed.buscarEjemplarPorId(IdEjemplar);
-        int IdLector = Integer.parseInt(jTIdLector.getText());
-        lectorActual = ld.buscarLector(IdLector);
-        int Cantidad = Integer.parseInt(jTCantidad.getText());
-        boolean Estado = jRBEstado.isSelected();
-        
-        if (prestamoActual == null) {
-            prestamoActual = new Prestamo(codigo, FechaI, FechaF, ejemplarActual, lectorActual, Estado, Cantidad);
-            pd.cargarPrestamo(prestamoActual);
-        }
-       } catch (NumberFormatException nf) {
+        try {
+            int codigo = Integer.parseInt(jTCodigo.getText());
+            java.util.Date fecha = jDFechaI.getDate();
+            LocalDate FechaI = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            java.util.Date fecha1 = jDFechaF.getDate();
+            LocalDate FechaF = fecha1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            int IdEjemplar = Integer.parseInt(jTIdEjemplar.getText());
+
+            ejemplarActual = ed.buscarEjemplarPorId(IdEjemplar);
+            int IdLector = Integer.parseInt(jTIdLector.getText());
+            lectorActual = ld.buscarLector(IdLector);
+            int Cantidad = Integer.parseInt(jTCantidad.getText());
+            boolean Estado = jRBEstado.isSelected();
+
+            if (prestamoActual == null && ejemplarActual.isEstado().equalsIgnoreCase("Disponible en Biblioteca")) {
+                prestamoActual = new Prestamo(codigo, FechaI, FechaF, ejemplarActual, lectorActual, Estado, Cantidad);
+                pd.cargarPrestamo(prestamoActual);
+
+                int codigo1 = ejemplarActual.getCodigo();
+                Libros idLibro = ejemplarActual.getIdLibro();
+                String Estado1 = ejemplarActual.isEstado();
+                int cant1 = ejemplarActual.getCantidad() - Cantidad;
+                int idEje = ejemplarActual.getIdEjemplar();
+                ejemplarActual = new Ejemplar(idEje, codigo1, idLibro, Estado1, cant1);
+                ed.modificarCantDeEje(ejemplarActual);
+
+            }
+        } catch (NumberFormatException nf) {
             JOptionPane.showMessageDialog(this, "Usted no ingreso un codigo valido");
-    }     
+        }
+
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
-          this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
 
     private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
@@ -288,54 +298,67 @@ private Lector lectorActual =null;
 
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
         try {
-        int codigo = Integer.parseInt(jTCodigo.getText());
-        
-         java.util.Date fecha = jDFechaI.getDate();
-        LocalDate FechaI = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        
-        java.util.Date fecha1 = jDFechaF.getDate();
-        LocalDate FechaF = fecha1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        
-        int IdEjemplar = Integer.parseInt(jTIdEjemplar.getText());
-        ejemplarActual = ed.buscarEjemplarPorId(IdEjemplar);
-        
-        int IdLector = Integer.parseInt(jTIdLector.getText());
-        lectorActual = ld.buscarLector(IdLector);
-        
-        int Cantidad = Integer.parseInt(jTCantidad.getText());
-        boolean Estado = jRBEstado.isSelected();
-        
-        prestamoActual = pd.buscarPrestamoPorCodigo(codigo);  
-        if(prestamoActual!= null){
-            
-            prestamoActual.setCodigo(codigo);
-            prestamoActual.setFechaI(FechaI);
-            prestamoActual.setFechaF(FechaF);
-            prestamoActual.setEjemplar(ejemplarActual);
-            prestamoActual.setLector(lectorActual);
-            prestamoActual.setCantidad(Cantidad);
-            prestamoActual.setEstado(Estado);
-            
-            pd.modificarPrestamo(prestamoActual);
-        }
-         } catch (NumberFormatException nf) {
+            int codigo = Integer.parseInt(jTCodigo.getText());
+
+            java.util.Date fecha = jDFechaI.getDate();
+            LocalDate FechaI = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            java.util.Date fecha1 = jDFechaF.getDate();
+            LocalDate FechaF = fecha1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            int IdEjemplar = Integer.parseInt(jTIdEjemplar.getText());
+            ejemplarActual = ed.buscarEjemplarPorId(IdEjemplar);
+
+            int IdLector = Integer.parseInt(jTIdLector.getText());
+            lectorActual = ld.buscarLector(IdLector);
+
+            int Cantidad = Integer.parseInt(jTCantidad.getText());
+            boolean Estado = jRBEstado.isSelected();
+
+            prestamoActual = pd.buscarPrestamoPorCodigo(codigo);
+            if (prestamoActual != null) {
+
+                prestamoActual.setCodigo(codigo);
+                prestamoActual.setFechaI(FechaI);
+                prestamoActual.setFechaF(FechaF);
+                prestamoActual.setEjemplar(ejemplarActual);
+                prestamoActual.setLector(lectorActual);
+                prestamoActual.setCantidad(Cantidad);
+                prestamoActual.setEstado(Estado);
+
+                pd.modificarPrestamo(prestamoActual);
+            }
+        } catch (NumberFormatException nf) {
             JOptionPane.showMessageDialog(this, "Usted no ingreso un codigo valido");
-    }     
+        }
     }//GEN-LAST:event_jBModificarActionPerformed
 
     private void jBDevolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDevolucionActionPerformed
-         try {
-             if(prestamoActual != null){
-                 pd.devolucionPrestamo(prestamoActual.getIdPrestamo());
-                 prestamoActual = null;                
-                 limpiarCampos();
-                
-             }else {
-                   JOptionPane.showMessageDialog(null, "Error, usted no ha seleccionado a ningun Lector.");
-             }          
-         } catch (NumberFormatException nf) {
+        try {
+            if (prestamoActual != null) {
+                pd.devolucionPrestamo(prestamoActual.getIdPrestamo());
+                int Cantidad = prestamoActual.getCantidad();
+                ejemplarActual = ed.buscarEjemplarPorId(prestamoActual.getEjemplar().getIdEjemplar());
+
+                if (ejemplarActual != null) {
+                    int codigo1 = ejemplarActual.getCodigo();
+                    Libros idLibro = ejemplarActual.getIdLibro();
+                    String Estado1 = ejemplarActual.isEstado();
+                    int cant1 = ejemplarActual.getCantidad() + Cantidad;
+                    int idEje = ejemplarActual.getIdEjemplar();
+                    ejemplarActual = new Ejemplar(idEje, codigo1, idLibro, Estado1, cant1);
+                    ed.modificarCantDeEje(ejemplarActual);
+
+                }
+                prestamoActual = null;
+                limpiarCampos();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Error, usted no ha seleccionado a ningun Lector.");
+            }
+        } catch (NumberFormatException nf) {
             JOptionPane.showMessageDialog(this, "Usted no ingreso un codigo valido");
-    }     
+        }
     }//GEN-LAST:event_jBDevolucionActionPerformed
 
 
@@ -363,14 +386,15 @@ private Lector lectorActual =null;
     private javax.swing.JTextField jTIdLector;
     // End of variables declaration//GEN-END:variables
 
-private void limpiarCampos(){
-    jTCodigo.setText("");
-    jDFechaI.setDate(new Date(00,00,0000));
-    jDFechaF.setDate(new Date(00,00,0000));
-    jTIdEjemplar.setText("");
-    jTIdLector.setText("");
-    jTCantidad.setText("");
-    jRBEstado.setSelected(false);
-    
-}
+    private void limpiarCampos() {
+        jTCodigo.setText("");
+        jDFechaI.setDate(new Date(00, 00, 0000));
+        jDFechaF.setDate(new Date(00, 00, 0000));
+        jTIdEjemplar.setText("");
+        jTIdLector.setText("");
+        jTCantidad.setText("");
+        jRBEstado.setSelected(false);
+        jDFechaF.setDate(null);
+        jDFechaI.setDate(null);
+    }
 }

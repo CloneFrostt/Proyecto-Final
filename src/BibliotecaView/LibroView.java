@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  * @author User
  */
 public class LibroView extends javax.swing.JInternalFrame {
-private LibroData ld;
+private LibroData ld = new LibroData();
 private Libros libroActual = null;
     /**
      * Creates new form Libro

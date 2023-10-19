@@ -107,7 +107,7 @@ public class PrestamoData {
   public Prestamo buscarPrestamoPorCodigo(int codigo) {
         Prestamo pres = null;
         try {
-            String sql = "SELECT * FROM prestamo WHERE Codigo=?";
+            String sql = "SELECT * FROM prestamo WHERE Codigo=? AND Estado=1";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, codigo);
             ResultSet rs = ps.executeQuery();
@@ -135,7 +135,7 @@ public class PrestamoData {
 
     }
     public void devolucionPrestamo(int idPrestamo) {
-        String sql = "UPDATE prestamo SET  Estado = 0 WHERE idPrestamo=?";
+        String sql = "UPDATE prestamo,ejemplar SET prestamo.Estado = 0 WHERE idPrestamo=? AND ejemplar.Estado='Prestado'";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idPrestamo);
@@ -151,7 +151,7 @@ public class PrestamoData {
     }
     
     public void modificarPrestamo(Prestamo p){
-        String sql = " UPDATE prestamo SET FechaI, FechaF, IdEjemplar, idLector, Cantidad WHERE idPrestamo = ? ";
+        String sql = " UPDATE prestamo SET FechaI, FechaF, idEjemplar, idLector, Cantidad WHERE idPrestamo = ? ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             
