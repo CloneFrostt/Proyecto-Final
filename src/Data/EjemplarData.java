@@ -261,6 +261,9 @@ public class EjemplarData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Ejemplar " + ex.getMessage());
         }
+
      
+
+
      }
 }

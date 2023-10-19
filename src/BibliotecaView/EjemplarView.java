@@ -219,7 +219,7 @@ public class EjemplarView extends javax.swing.JInternalFrame {
             int codigo = Integer.parseInt(jTextCodigo.getText());
             ejeActual = ejeData.buscarEjemplarPorCodigo(codigo);
             if (ejeActual != null) {
-                jTextIdLibro.setText(ejeActual.getIdLibro() + "");
+                jTextIdLibro.setText(ejeActual.getIdLibro().getIdLibro() + " " );
                 jCEstado.setSelectedItem(ejeActual.isEstado() + "");
                 jTextCantEj.setText(ejeActual.getCantidad() + "");
             }

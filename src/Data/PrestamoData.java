@@ -136,6 +136,8 @@ public class PrestamoData {
     }
     public void devolucionPrestamo(int idPrestamo) {
         String sql = "UPDATE prestamo,ejemplar SET prestamo.Estado = 0 WHERE idPrestamo=? AND ejemplar.Estado='Prestado'";
+       //String sql = "UPDATE prestamo,ejemplar SET prestamo.Estado = 0 WHERE idPrestamo=? AND ejemplar.Estado='Prestado'";
+       
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idPrestamo);
