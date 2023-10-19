@@ -221,7 +221,12 @@ private Libros libroActual = null;
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         try {
+            
             String isbn = jTextISBN.getText();
+            if(isbn.length()!=13){
+            JOptionPane.showMessageDialog(this, "El ISBN debe contener 13 caracteres");
+            }
+            
             String titulo = jTextTitulo.getText();
             String autor = jTextAutor.getText();
             int anio = Integer.parseInt(jTextAnio.getText());
@@ -301,4 +306,5 @@ private Libros libroActual = null;
          jTextEditorial.setText("");
          jREstado.setSelected(false);
     }
+
 }

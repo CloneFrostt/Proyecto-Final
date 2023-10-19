@@ -254,11 +254,7 @@ public class PrestamoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-
-  
-
-     try {
-
+        try {
             int codigo = Integer.parseInt(jTCodigo.getText());
             java.util.Date fecha = jDFechaI.getDate();
             LocalDate FechaI = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -338,8 +334,7 @@ public class PrestamoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBModificarActionPerformed
 
     private void jBDevolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDevolucionActionPerformed
-
-             try {
+        try {
             if (prestamoActual != null) {
                 pd.devolucionPrestamo(prestamoActual.getIdPrestamo());
                 int Cantidad = prestamoActual.getCantidad();
@@ -393,13 +388,12 @@ public class PrestamoView extends javax.swing.JInternalFrame {
 
     private void limpiarCampos() {
         jTCodigo.setText("");
-        jDFechaI.setDate(new Date(00, 00, 0000));
-        jDFechaF.setDate(new Date(00, 00, 0000));
+        jDFechaI.setDate(null);
+        jDFechaF.setDate(null);
         jTIdEjemplar.setText("");
         jTIdLector.setText("");
         jTCantidad.setText("");
         jRBEstado.setSelected(false);
-        jDFechaF.setDate(null);
-        jDFechaI.setDate(null);
+
     }
 }
