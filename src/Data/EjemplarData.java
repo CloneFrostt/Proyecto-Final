@@ -240,4 +240,27 @@ public class EjemplarData {
         return eje;
 
     }
+     public void modificarCantDeEje(Ejemplar ej){
+      String sql = "UPDATE ejemplar SET Cantidad=?"
+                + " WHERE idEjemplar=?";
+        PreparedStatement ps = null;
+
+        try {
+            ps = con.prepareStatement(sql);
+
+         
+            ps.setInt(1, ej.getCantidad());
+            ps.setInt(2, ej.getIdEjemplar());
+            int exito = ps.executeUpdate();
+      
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Modificado Exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "El Ejemplar ya existe");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Ejemplar " + ex.getMessage());
+        }
+     }
 }
