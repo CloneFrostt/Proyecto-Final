@@ -104,7 +104,9 @@ public class PrestamoData {
         return pres;
 
     }
-  public Prestamo buscarPrestamoPorCodigo(int codigo) {
+    
+  public Prestamo buscarPrestamoPorCodigo(int codigo) 
+  {
         Prestamo pres = null;
         try {
             String sql = "SELECT * FROM prestamo WHERE Codigo=? AND Estado=1";
@@ -150,7 +152,8 @@ public class PrestamoData {
         }
     }
     
-    public void modificarPrestamo(Prestamo p){
+    public void modificarPrestamo(Prestamo p)
+    {
         String sql = " UPDATE prestamo SET FechaI, FechaF, idEjemplar, idLector, Cantidad WHERE idPrestamo = ? ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -172,7 +175,8 @@ public class PrestamoData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Prestamo" + ex.getMessage());
         }
     }
- public List<Libros>listaLibrosPrestados(){
+ public List<Libros>listaLibrosPrestados()
+ {
     List<Libros> libros = new ArrayList<>();
  
      String sql="SELECT Titulo,Autor ,Anio, Tipo FROM libro INNER JOIN ejemplar ON libro.idLibro = ejemplar.idEjemplar "
@@ -204,7 +208,8 @@ public class PrestamoData {
         
  }return libros;
 }
-  public List<Libros>listaLibrosPrestados(LocalDate fecha){
+  public List<Libros>listaLibrosPrestadosEnFechaDet(LocalDate fecha)
+  {
     List<Libros> libros = new ArrayList<>();
  
          // String sql="SELECT Titulo, Autor, Anio FROM libro l,prestamo p  WHERE  l.idLibro = p.idLibro AND FechaI = ? ";
@@ -236,7 +241,8 @@ public class PrestamoData {
         
  }return libros;
 }
- public List<Lector>listaLectoresQuePidieronPrestamo(){
+ public List<Lector>listaLectoresQuePidieronPrestamo()
+ {
     List<Lector> lector = new ArrayList<>();
  
           String sql="SELECT l.NroSocio,l.Nombre,p.Codigo, p.FechaI, p.FechaF FROM prestamo p, lector l WHERE  lector.idLector = prestamo.idLector ";
