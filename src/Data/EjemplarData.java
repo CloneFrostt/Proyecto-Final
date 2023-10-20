@@ -39,12 +39,13 @@ public class EjemplarData {
         }
     }
 
-    public List<Ejemplar> listaDisponible() {
+    public List<Ejemplar> listaEjemplarPorEstado(String estado) {
         List<Ejemplar> ejemplar = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM ejemplar WHERE estado = 1";
+            String sql = "SELECT * FROM ejemplar WHERE estado = ?";
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, estado);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Ejemplar ej = new Ejemplar();
@@ -65,80 +66,7 @@ public class EjemplarData {
         return ejemplar;
     }
 
-    public List<Ejemplar> listaPrestados() {
-        List<Ejemplar> ejemplar = new ArrayList<>();
-        try {
-            String sql = "SELECT * FROM ejemplar WHERE estado = 2";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Ejemplar ej = new Ejemplar();
-                ej.setIdEjemplar(rs.getInt("idEjemplar"));
-                ej.setCodigo(rs.getInt("Codigo"));
-                  Libros L = ld.buscarLibroPorId(rs.getInt("idLibro"));
-                ej.setIdLibro(L);
-                ej.setEstado(rs.getString("Estado"));
-                ej.setCantidad(rs.getInt("Cantidad"));
-                ejemplar.add(ej);
-
-            }
-            ps.close();
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Ejemplar" + ex.getMessage());
-        }
-        return ejemplar;
-    }
-
-    public List<Ejemplar> listaEnReparacion() {
-        List<Ejemplar> ejemplar = new ArrayList<>();
-        try {
-            String sql = "SELECT * FROM ejemplar WHERE estado = 3";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Ejemplar ej = new Ejemplar();
-                ej.setIdEjemplar(rs.getInt("idEjemplar"));
-                ej.setCodigo(rs.getInt("Codigo"));
-                 Libros L = ld.buscarLibroPorId(rs.getInt("idLibro"));
-                ej.setIdLibro(L);
-                ej.setEstado(rs.getString("Estado"));
-                ej.setCantidad(rs.getInt("Cantidad"));
-                ejemplar.add(ej);
-
-            }
-            ps.close();
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Ejemplar" + ex.getMessage());
-        }
-        return ejemplar;
-    }
-
-    public List<Ejemplar> listaEnRetraso() {
-        List<Ejemplar> ejemplar = new ArrayList<>();
-        try {
-            String sql = "SELECT * FROM ejemplar WHERE estado = 4";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Ejemplar ej = new Ejemplar();
-                ej.setIdEjemplar(rs.getInt("idEjemplar"));
-                ej.setCodigo(rs.getInt("Codigo"));
-                Libros L = ld.buscarLibroPorId(rs.getInt("idLibro"));
-                ej.setIdLibro(L);
-                ej.setEstado(rs.getString("Estado"));
-                ej.setCantidad(rs.getInt("Cantidad"));
-                ejemplar.add(ej);
-
-            }
-            ps.close();
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Ejemplar" + ex.getMessage());
-        }
-        return ejemplar;
-    }
+   
 
     public void eliminarEjemplar(int id) {
         String sql = "DELETE FROM ejemplar WHERE idEjemplar=?";

@@ -65,6 +65,11 @@ public class EjemplarView extends javax.swing.JInternalFrame {
         jLabel5.setText("Cantidad Ej.:");
 
         jCEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Prestado", "Retraso", "Reparacion", "Disponible en Biblioteca", " ", " " }));
+        jCEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCEstadoActionPerformed(evt);
+            }
+        });
 
         jBAgregar.setText("Agregar");
         jBAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -283,6 +288,10 @@ public class EjemplarView extends javax.swing.JInternalFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jBLimpiarActionPerformed
+
+    private void jCEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCEstadoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

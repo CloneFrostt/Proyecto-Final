@@ -130,10 +130,10 @@ public class LibrosPorAutor extends javax.swing.JInternalFrame {
 
     private void jTFAutorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFAutorKeyReleased
       borrarFilas();
-        for(Libros ld:ld.listarLibrosPorAutor(jTFAutor.getText())){
-            if(ld.getAutor().startsWith(jTFAutor.getText())){
+        for(Libros lib:ld.listarLibrosPorAutor(jTFAutor.getText())){
+            if(lib.getAutor().startsWith(jTFAutor.getText())){
                 
-                modelo.addRow(new Object[]{ld.getIsbn(),ld.getTitulo(),ld.getAnio(),ld.getTipo(),ld.getEditorial()});
+                modelo.addRow(new Object[]{lib.getIsbn(),lib.getTitulo(),lib.getAnio(),lib.getTipo(),lib.getEditorial()});
             
             }
             
@@ -156,11 +156,11 @@ private void limpiarCampos(){
 private void armarCabecera(){
 modelo.addColumn("ISBN");
 modelo.addColumn("Titulo");
-modelo.addColumn("Autor");
 modelo.addColumn("Año");
 modelo.addColumn("Tipo");
 modelo.addColumn("Editorial");
-modelo.addColumn("Estado");
+jTLAutor.setModel(modelo);
+
 }
 private void borrarFilas(){
     int f= jTLAutor.getRowCount()-1;
