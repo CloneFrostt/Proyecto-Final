@@ -14,12 +14,16 @@ import javax.swing.table.DefaultTableModel;
  * @author User
  */
 public class EjemplaresSegunElEstado extends javax.swing.JInternalFrame {
+int i=0;    
 private EjemplarData ed = new EjemplarData();
    private DefaultTableModel modelo = new DefaultTableModel();
-
+private Ejemplar e1=null;
     public EjemplaresSegunElEstado() {
         initComponents();
         armarCabecera();
+       
+        cargarCombo();
+      
     }
 
     /**
@@ -33,18 +37,18 @@ private EjemplarData ed = new EjemplarData();
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jCBEstado = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jBSalir = new javax.swing.JButton();
 
         jLabel1.setText("      Lista de Ejemplares segun el Estado:");
 
         jLabel2.setText("Estado :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", " Disponible en Biblioteca", " Prestado", " Reparacion", " Retraso" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jCBEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jCBEstadoActionPerformed(evt);
             }
         });
 
@@ -61,6 +65,13 @@ private EjemplarData ed = new EjemplarData();
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jBSalir.setText("Salir");
+        jBSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,16 +80,18 @@ private EjemplarData ed = new EjemplarData();
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(22, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(82, 82, 82))))
+                            .addComponent(jCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(82, 82, 82))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jBSalir)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(22, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,21 +100,28 @@ private EjemplarData ed = new EjemplarData();
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 26, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jBSalir)
+                .addGap(0, 31, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        String estado = (String) jComboBox1.getSelectedItem();
+    private void jCBEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBEstadoActionPerformed
+       borrarFilas();
+      String estado = (String) jCBEstado.getSelectedItem();
         for(Ejemplar E : ed.listaEjemplarPorEstado(estado) ){
             modelo.addRow(new Object[]{E.getIdEjemplar(),E.getCodigo(),E.getIdLibro(),E.getCantidad()});
-        }        
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+        }          
+    }//GEN-LAST:event_jCBEstadoActionPerformed
+
+    private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
+        this.dispose();// TODO add your handling code here:
+    }//GEN-LAST:event_jBSalirActionPerformed
 private void armarCabecera(){
 modelo.addColumn("IdEjemplar");
 modelo.addColumn("Codigo");
@@ -110,9 +130,24 @@ modelo.addColumn("Cantidad");
 jTable1.setModel(modelo);
 
 }
+private void cargarCombo(){
+jCBEstado.addItem("Disponible en Biblioteca");
+jCBEstado.addItem("Prestado");
+jCBEstado.addItem("Reparacion");
+jCBEstado.addItem("Retraso");
+}
+private void borrarFilas(){
+  i += 1;
+        if(i>1){
+        int f = jTable1.getRowCount()-1;
+        for(;f>=0;f--){
+            modelo.removeRow(f);
+        }}
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton jBSalir;
+    private javax.swing.JComboBox<String> jCBEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

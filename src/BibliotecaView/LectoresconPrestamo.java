@@ -5,17 +5,24 @@
  */
 package BibliotecaView;
 
+import Data.PrestamoData;
+import Entidades.Ejemplar;
+import Entidades.Lector;
+import Entidades.Prestamo;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author User
  */
 public class LectoresconPrestamo extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form LectoresconPrestamo
-     */
+    private PrestamoData pd = new PrestamoData();
+    private DefaultTableModel modelo = new DefaultTableModel();
+    private Lector L1=null;
     public LectoresconPrestamo() {
         initComponents();
+        armarCabeceraYCargar();
     }
 
     /**
@@ -30,27 +37,39 @@ public class LectoresconPrestamo extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        jRBVerTabla = new javax.swing.JRadioButton();
+        jRBSalir = new javax.swing.JRadioButton();
 
         jLabel1.setText("Lista de Lectores que Pidieron un prestamo:");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Nro de Socio", "Nombre y Apellido", "Domicilio", "Estado"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTable1KeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
-        jRadioButton1.setText("Ver Tabla");
+        jRBVerTabla.setText("Ver Tabla");
+        jRBVerTabla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRBVerTablaActionPerformed(evt);
+            }
+        });
 
-        jRadioButton2.setText("Salir");
+        jRBSalir.setText("Salir");
+        jRBSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRBSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -59,7 +78,7 @@ public class LectoresconPrestamo extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(20, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(98, 98, 98)
@@ -67,10 +86,9 @@ public class LectoresconPrestamo extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(80, 80, 80)
-                        .addComponent(jRadioButton1)
+                        .addComponent(jRBVerTabla)
                         .addGap(100, 100, 100)
-                        .addComponent(jRadioButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jRBSalir)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -79,8 +97,8 @@ public class LectoresconPrestamo extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(jRBVerTabla)
+                    .addComponent(jRBSalir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -89,11 +107,38 @@ public class LectoresconPrestamo extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jRBVerTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBVerTablaActionPerformed
+        jRBVerTabla.setSelected(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRBVerTablaActionPerformed
 
+    private void jRBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBSalirActionPerformed
+        this.dispose(); // TODO add your handling code here:
+    }//GEN-LAST:event_jRBSalirActionPerformed
+
+    private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
+//        String prestamo;
+//        prestamo = (String) jRBVerTabla.toString();
+//        for (Lector L : pd.listaLectoresQuePidieronPrestamo()) {
+//            modelo.addRow(new Object[]{L.getNroSocio(), L.getNombre(), L.getDomicilio(), L.isEstado()});
+//        }            // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1KeyReleased
+    private void armarCabeceraYCargar() {
+        modelo.addColumn("Nro Socio");
+        modelo.addColumn("Nombre y Apellido");
+        modelo.addColumn("Domicilio");
+        modelo.addColumn("Estado");
+        jTable1.setModel(modelo);
+             String prestamo;
+        prestamo = (String) jRBVerTabla.getText();
+        for (Lector L : pd.listaLectoresQuePidieronPrestamo()) {
+            modelo.addRow(new Object[]{L.getNroSocio(), L.getNombre(), L.getDomicilio(), L.isEstado()});
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRBSalir;
+    private javax.swing.JRadioButton jRBVerTabla;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

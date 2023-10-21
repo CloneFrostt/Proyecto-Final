@@ -169,6 +169,15 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMLibPrest);
 
         jMenu8.setText("Salir");
+        jMenu8.addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                jMenu8MenuSelected(evt);
+            }
+        });
         jMenuBar1.add(jMenu8);
 
         setJMenuBar(jMenuBar1);
@@ -280,6 +289,10 @@ public class Menu extends javax.swing.JFrame {
         jDEscritorio.add(ese);
         jDEscritorio.moveToFront(ese); // TODO add your handling code here:
     }//GEN-LAST:event_jMEjeSegunElEstActionPerformed
+
+    private void jMenu8MenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenu8MenuSelected
+        System.exit(0);
+    }//GEN-LAST:event_jMenu8MenuSelected
 
     /**
      * @param args the command line arguments
