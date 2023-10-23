@@ -5,17 +5,25 @@
  */
 package BibliotecaView;
 
+import Data.PrestamoData;
+import Entidades.Prestamo;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author User
  */
 public class PrestamosOtorgados extends javax.swing.JInternalFrame {
-
+private DefaultTableModel modelo = new DefaultTableModel();
+private PrestamoData pd = new PrestamoData();
+private Prestamo prestamoActual = null;
     /**
      * Creates new form PrestamosOtorgados
      */
     public PrestamosOtorgados() {
         initComponents();
+        armarCabecera();
+        
     }
 
     /**
@@ -39,8 +47,18 @@ public class PrestamosOtorgados extends javax.swing.JInternalFrame {
         jLabel2.setText("¿Desea ver la tabla? :");
 
         jRadioButton1.setText("Si");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
 
         jRadioButton2.setText("No");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -91,6 +109,20 @@ public class PrestamosOtorgados extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+      jRadioButton2.setSelected(false);
+      for( Prestamo p : pd.listadoDePrestOtorgados()){
+          modelo.addRow(new Object[]{ p.getCodigo(), p.getFechaI(), p.getFechaF(), p.getCantidad()});
+      }
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+        jRadioButton1.setSelected(false);
+        this.dispose();
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -100,4 +132,12 @@ public class PrestamosOtorgados extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void armarCabecera(){
+modelo.addColumn("Codigo");
+modelo.addColumn("Fecha de Inicio");
+modelo.addColumn("Fecha de Devolucion");
+modelo.addColumn("Cantidad");
+jTable1.setModel(modelo);
+}
 }
