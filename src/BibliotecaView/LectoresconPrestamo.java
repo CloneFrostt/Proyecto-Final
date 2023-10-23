@@ -108,7 +108,10 @@ public class LectoresconPrestamo extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRBVerTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBVerTablaActionPerformed
-        jRBVerTabla.setSelected(true);
+       jRBSalir.setSelected(false);
+          for (Lector L : pd.listaLectoresQuePidieronPrestamo()) {
+            modelo.addRow(new Object[]{L.getNroSocio(), L.getNombre(), L.getDomicilio(), L.isEstado()});
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_jRBVerTablaActionPerformed
 
@@ -129,11 +132,8 @@ public class LectoresconPrestamo extends javax.swing.JInternalFrame {
         modelo.addColumn("Domicilio");
         modelo.addColumn("Estado");
         jTable1.setModel(modelo);
-             String prestamo;
-        prestamo = (String) jRBVerTabla.getText();
-        for (Lector L : pd.listaLectoresQuePidieronPrestamo()) {
-            modelo.addRow(new Object[]{L.getNroSocio(), L.getNombre(), L.getDomicilio(), L.isEstado()});
-        }
+        
+      
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
