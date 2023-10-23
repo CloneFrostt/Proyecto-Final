@@ -58,13 +58,11 @@ public class Menu extends javax.swing.JFrame {
         jDEscritorio.setLayout(jDEscritorioLayout);
         jDEscritorioLayout.setHorizontalGroup(
             jDEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jDEscritorioLayout.setVerticalGroup(
             jDEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDEscritorioLayout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1086, Short.MAX_VALUE)
         );
 
         jMListaLibDisp.setText("Socios");
@@ -95,6 +93,11 @@ public class Menu extends javax.swing.JFrame {
         jMenu2.add(jMLibro);
 
         jMListaLibxAutor.setText("Lista de Libros por Autor");
+        jMListaLibxAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMListaLibxAutorActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMListaLibxAutor);
 
         jMenuBar1.add(jMenu2);
@@ -300,6 +303,15 @@ public class Menu extends javax.swing.JFrame {
     private void jMenu8MenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenu8MenuSelected
         System.exit(0);
     }//GEN-LAST:event_jMenu8MenuSelected
+
+    private void jMListaLibxAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMListaLibxAutorActionPerformed
+       jDEscritorio.removeAll();
+        jDEscritorio.repaint();
+        LibrosPorAutor lpa = new  LibrosPorAutor();
+        lpa.setVisible(true);
+        jDEscritorio.add(lpa);
+        jDEscritorio.moveToFront(lpa);   // TODO add your handling code here:
+    }//GEN-LAST:event_jMListaLibxAutorActionPerformed
 
     /**
      * @param args the command line arguments

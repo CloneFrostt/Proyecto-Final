@@ -1,21 +1,21 @@
-
 package BibliotecaView;
 
 import Data.LibroData;
 import Entidades.Libros;
 import javax.swing.table.DefaultTableModel;
 
-
 public class LibrosPorAutor extends javax.swing.JInternalFrame {
+
     private DefaultTableModel modelo = new DefaultTableModel() {
         @Override
         public boolean isCellEditable(int f, int c) {
             return false;
         }
     };
-   private LibroData ld;
+    private LibroData ld;
+
     public LibrosPorAutor() {
-        ld=new LibroData();
+        ld = new LibroData();
         initComponents();
         armarCabecera();
     }
@@ -121,29 +121,30 @@ public class LibrosPorAutor extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
-              this.dispose();  // TODO add your handling code here:
+        this.dispose();  // TODO add your handling code here:
     }//GEN-LAST:event_jBSalirActionPerformed
 
     private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
-        limpiarCampos();// TODO add your handling code here:
+        limpiarCampos();
+        borrarFilas();// TODO add your handling code here:
     }//GEN-LAST:event_jBLimpiarActionPerformed
 
     private void jTFAutorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFAutorKeyReleased
-      borrarFilas();
-        for(Libros lib:ld.listarLibrosPorAutor(jTFAutor.getText())){
-            if(lib.getAutor().startsWith(jTFAutor.getText())){
-                
-                modelo.addRow(new Object[]{lib.getIsbn(),lib.getTitulo(),lib.getAnio(),lib.getTipo(),lib.getEditorial()});
-            
+        borrarFilas();
+        for (Libros lib : ld.listarLibrosPorAutor(jTFAutor.getText())) {
+            if (lib.getAutor().startsWith(jTFAutor.getText())) {
+
+                modelo.addRow(new Object[]{lib.getIsbn(), lib.getTitulo(), lib.getAnio(), lib.getTipo(), lib.getEditorial()});
+
             }
-            
+
         }  // TODO add your handling code here:
     }//GEN-LAST:event_jTFAutorKeyReleased
 
-private void limpiarCampos(){
-   jTFAutor.setText("");
-   
-}
+    private void limpiarCampos() {
+        jTFAutor.setText("");
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBLimpiar;
     private javax.swing.JButton jBSalir;
@@ -153,19 +154,20 @@ private void limpiarCampos(){
     private javax.swing.JTextField jTFAutor;
     private javax.swing.JTable jTLAutor;
     // End of variables declaration//GEN-END:variables
-private void armarCabecera(){
-modelo.addColumn("ISBN");
-modelo.addColumn("Titulo");
-modelo.addColumn("Año");
-modelo.addColumn("Tipo");
-modelo.addColumn("Editorial");
-jTLAutor.setModel(modelo);
+private void armarCabecera() {
+        modelo.addColumn("ISBN");
+        modelo.addColumn("Titulo");
+        modelo.addColumn("Año");
+        modelo.addColumn("Tipo");
+        modelo.addColumn("Editorial");
+        jTLAutor.setModel(modelo);
 
-}
-private void borrarFilas(){
-    int f= jTLAutor.getRowCount()-1;
-    for(;f>=0;f--){
-     modelo.removeRow(f);
     }
-}
+
+    private void borrarFilas() {
+        int f = jTLAutor.getRowCount() - 1;
+        for (; f >= 0; f--) {
+            modelo.removeRow(f);
+        }
+    }
 }
