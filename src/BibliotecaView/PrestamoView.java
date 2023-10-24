@@ -15,7 +15,7 @@ public class PrestamoView extends javax.swing.JInternalFrame {
 
     public PrestamoView() {
         initComponents();
-
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -43,6 +43,8 @@ public class PrestamoView extends javax.swing.JInternalFrame {
         jBLimpiar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jTCodigo = new javax.swing.JTextField();
+
+        setVisible(true);
 
         jLabel1.setText("                   PRESTAMOS:");
 
