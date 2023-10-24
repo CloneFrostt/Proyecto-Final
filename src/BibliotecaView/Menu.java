@@ -1,16 +1,9 @@
-
 package BibliotecaView;
-
-
-public class Menu extends javax.swing.JFrame {
-
+public class Menu extends javax.swing.JFrame {  
     
     public Menu() {
         initComponents();
-
     }
-
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -50,6 +43,8 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jDEscritorio.setBackground(new java.awt.Color(255, 102, 102));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BibliotecaView/Image20231011170238.png"))); // NOI18N
 
         jDEscritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -62,7 +57,9 @@ public class Menu extends javax.swing.JFrame {
         );
         jDEscritorioLayout.setVerticalGroup(
             jDEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1086, Short.MAX_VALUE)
+            .addGroup(jDEscritorioLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jMListaLibDisp.setText("Socios");
@@ -243,7 +240,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMPrestamoActionPerformed
 
     private void jMListaLibDispActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMListaLibDispActionPerformed
-         // TODO add your handling code here:
+
     }//GEN-LAST:event_jMListaLibDispActionPerformed
 
     private void jMListLibPrestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMListLibPrestActionPerformed
@@ -252,7 +249,7 @@ public class Menu extends javax.swing.JFrame {
         LibrosPrestados lp = new LibrosPrestados();
         lp.setVisible(true);
         jDEscritorio.add(lp);
-        jDEscritorio.moveToFront(lp); // TODO add your handling code here:
+        jDEscritorio.moveToFront(lp);
     }//GEN-LAST:event_jMListLibPrestActionPerformed
 
     private void jMLectconPrestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMLectconPrestActionPerformed
@@ -261,7 +258,7 @@ public class Menu extends javax.swing.JFrame {
         LectoresconPrestamo lp = new LectoresconPrestamo();
         lp.setVisible(true);
         jDEscritorio.add(lp);
-        jDEscritorio.moveToFront(lp);// TODO add your handling code here:
+        jDEscritorio.moveToFront(lp);
     }//GEN-LAST:event_jMLectconPrestActionPerformed
 
     private void jMPrestVencidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMPrestVencidoActionPerformed
@@ -270,7 +267,7 @@ public class Menu extends javax.swing.JFrame {
         PrestamosVencidos pv = new PrestamosVencidos();
         pv.setVisible(true);
         jDEscritorio.add(pv);
-        jDEscritorio.moveToFront(pv); // TODO add your handling code here:
+        jDEscritorio.moveToFront(pv);
     }//GEN-LAST:event_jMPrestVencidoActionPerformed
 
     private void jMListaPresOtorgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMListaPresOtorgActionPerformed
@@ -279,7 +276,7 @@ public class Menu extends javax.swing.JFrame {
         PrestamosOtorgados po = new PrestamosOtorgados();
         po.setVisible(true);
         jDEscritorio.add(po);
-        jDEscritorio.moveToFront(po);  // TODO add your handling code here:
+        jDEscritorio.moveToFront(po);
     }//GEN-LAST:event_jMListaPresOtorgActionPerformed
 
     private void jMPrestamFechaDetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMPrestamFechaDetActionPerformed
@@ -288,7 +285,7 @@ public class Menu extends javax.swing.JFrame {
         PrestamosEnFechaDet pfd = new PrestamosEnFechaDet();
         pfd.setVisible(true);
         jDEscritorio.add(pfd);
-        jDEscritorio.moveToFront(pfd);         // TODO add your handling code here:
+        jDEscritorio.moveToFront(pfd);
     }//GEN-LAST:event_jMPrestamFechaDetActionPerformed
 
     private void jMEjeSegunElEstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMEjeSegunElEstActionPerformed
@@ -297,7 +294,7 @@ public class Menu extends javax.swing.JFrame {
         EjemplaresSegunElEstado ese = new EjemplaresSegunElEstado();
         ese.setVisible(true);
         jDEscritorio.add(ese);
-        jDEscritorio.moveToFront(ese); // TODO add your handling code here:
+        jDEscritorio.moveToFront(ese);
     }//GEN-LAST:event_jMEjeSegunElEstActionPerformed
 
     private void jMenu8MenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenu8MenuSelected
@@ -310,44 +307,17 @@ public class Menu extends javax.swing.JFrame {
         LibrosPorAutor lpa = new  LibrosPorAutor();
         lpa.setVisible(true);
         jDEscritorio.add(lpa);
-        jDEscritorio.moveToFront(lpa);   // TODO add your handling code here:
+        jDEscritorio.moveToFront(lpa);
     }//GEN-LAST:event_jMListaLibxAutorActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Menu().setVisible(true);
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDEscritorio;
     private javax.swing.JLabel jLabel1;

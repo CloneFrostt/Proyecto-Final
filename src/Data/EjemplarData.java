@@ -1,11 +1,8 @@
 package Data;
-
 import Data.*;
 import Entidades.*;
 import java.sql.*;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 
 public class EjemplarData {

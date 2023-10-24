@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package BibliotecaView;
-
 import Data.PrestamoData;
 import Entidades.Lector;
 import java.time.LocalDate;
@@ -12,10 +6,6 @@ import java.time.ZoneId;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author User
- */
 public class PrestamosVencidos extends javax.swing.JInternalFrame {
 
     private DefaultTableModel modelo = new DefaultTableModel();
@@ -119,11 +109,11 @@ public class PrestamosVencidos extends javax.swing.JInternalFrame {
         for (Lector l : ListaLec) {
             modelo.addRow(new Object[]{l.getNroSocio(), l.getNombre(), l.getDomicilio(), l.getMail()});
 
-        }        // TODO add your handling code here:
+        } 
     }//GEN-LAST:event_jBVerListaActionPerformed
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
-        this.dispose();        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
 
 

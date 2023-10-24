@@ -1,5 +1,4 @@
 package Data;
-
 import Entidades.*;
 import java.sql.*;
 import java.time.LocalDate;
@@ -181,10 +180,6 @@ public class PrestamoData {
  
      String sql="SELECT * FROM libro INNER JOIN ejemplar ON libro.idLibro = ejemplar.idLibro "
              + " INNER JOIN prestamo ON ejemplar.idEjEmplar = prestamo.idEjemplar ";
-   // String sql="SELECT ejemplar.idLibro, prestamo.idPrestamo, FechaI" +
-     //                "FROM ejemplar,prestamo WHERE libro.idLibro = ejemplar.idLibro" +
-      //               " AND ejemplar.idEjemplar = prestamo.idEjemplar;";
-
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ResultSet rs=ps.executeQuery();
@@ -210,9 +205,7 @@ public class PrestamoData {
 }
   public List<Libros>listaLibrosPrestadosEnFechaDet(LocalDate fecha)
   {
-    List<Libros> libros = new ArrayList<>();
- 
-         // String sql="SELECT Titulo, Autor, Anio FROM libro l,prestamo p  WHERE  l.idLibro = p.idLibro AND FechaI = ? ";
+    List<Libros> libros = new ArrayList<>(); 
            String sql="SELECT * FROM libro INNER JOIN ejemplar ON libro.idLibro = ejemplar.idLibro "
              + " INNER JOIN prestamo ON ejemplar.idEjEmplar = prestamo.idEjemplar  AND FechaI = ? ";
         try {

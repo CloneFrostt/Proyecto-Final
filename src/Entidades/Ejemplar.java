@@ -70,7 +70,4 @@ public class Ejemplar {
     public String toString() {
         return "Ejemplar{" + "idEjemplar=" + idEjemplar + ", Codigo=" + Codigo + ", idLibro=" + idLibro + ", Estado=" + Estado + ", Cantidad=" + Cantidad + '}';
     }
-
-   
-
  }

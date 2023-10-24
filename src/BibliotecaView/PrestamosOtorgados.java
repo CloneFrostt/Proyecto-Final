@@ -1,25 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package BibliotecaView;
-
 import Data.PrestamoData;
 import Entidades.Prestamo;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author User
- */
 public class PrestamosOtorgados extends javax.swing.JInternalFrame {
 private DefaultTableModel modelo = new DefaultTableModel();
 private PrestamoData pd = new PrestamoData();
 private Prestamo prestamoActual = null;
-    /**
-     * Creates new form PrestamosOtorgados
-     */
+   
     public PrestamosOtorgados() {
         initComponents();
         armarCabecera();
@@ -110,7 +98,6 @@ private Prestamo prestamoActual = null;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
       jRadioButton2.setSelected(false);
       for( Prestamo p : pd.listadoDePrestOtorgados()){
           modelo.addRow(new Object[]{ p.getCodigo(), p.getFechaI(), p.getFechaF(), p.getCantidad()});
@@ -118,7 +105,6 @@ private Prestamo prestamoActual = null;
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
         jRadioButton1.setSelected(false);
         this.dispose();
     }//GEN-LAST:event_jRadioButton2ActionPerformed
