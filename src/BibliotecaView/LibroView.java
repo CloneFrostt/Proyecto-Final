@@ -208,6 +208,7 @@ private Libros libroActual = null;
             String isbn = jTextISBN.getText();
             if(isbn.length()!=13){
             JOptionPane.showMessageDialog(this, "El ISBN debe contener 13 caracteres");
+            return;
             }
             
             String titulo = jTextTitulo.getText();
