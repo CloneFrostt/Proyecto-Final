@@ -67,7 +67,9 @@ public class Menu extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1037, Short.MAX_VALUE)
         );
 
-        jMListaLibDisp.setText("Socios");
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(318, 60));
+
+        jMListaLibDisp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/Lector.png"))); // NOI18N
         jMListaLibDisp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMListaLibDispActionPerformed(evt);
@@ -84,7 +86,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMListaLibDisp);
 
-        jMenu2.setText("Libros");
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/Libros.png"))); // NOI18N
 
         jMLibro.setText("Formulario de Libros");
         jMLibro.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +106,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu4.setText("Ejemplar");
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/Ejemplar.png"))); // NOI18N
 
         jMEjemplar.setText("Formulario de Ejemplar");
         jMEjemplar.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +126,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenu9.setText("Prestamo");
+        jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/prestamo.png"))); // NOI18N
 
         jMPrestamo.setText("Formulario Prestamo");
         jMPrestamo.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +138,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu9);
 
-        jMLibPrest.setText("Administracion");
+        jMLibPrest.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/Administracion.png"))); // NOI18N
 
         jMListLibPrest.setText("Libros Prestados");
         jMListLibPrest.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +182,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMLibPrest);
 
-        jMenu8.setText("Salir");
+        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/salida.png"))); // NOI18N
         jMenu8.addMenuListener(new javax.swing.event.MenuListener() {
             public void menuCanceled(javax.swing.event.MenuEvent evt) {
             }
