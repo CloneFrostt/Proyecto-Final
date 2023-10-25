@@ -50,7 +50,7 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jDEscritorio.setBackground(new java.awt.Color(255, 102, 102));
+        jDEscritorio.setBackground(new java.awt.Color(0, 102, 102));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BibliotecaView/Image20231011170238.png"))); // NOI18N
 
@@ -60,16 +60,11 @@ public class Menu extends javax.swing.JFrame {
         jDEscritorio.setLayout(jDEscritorioLayout);
         jDEscritorioLayout.setHorizontalGroup(
             jDEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDEscritorioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1863, Short.MAX_VALUE)
         );
         jDEscritorioLayout.setVerticalGroup(
             jDEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDEscritorioLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1037, Short.MAX_VALUE)
         );
 
         jMListaLibDisp.setText("Socios");
