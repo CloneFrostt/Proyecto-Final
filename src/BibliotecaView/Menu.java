@@ -300,7 +300,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu8MenuSelected
 
     private void jMListaLibxAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMListaLibxAutorActionPerformed
-       jDEscritorio.removeAll();
+        jDEscritorio.removeAll();
         jDEscritorio.repaint();
         LibrosPorAutor lpa = new  LibrosPorAutor();
         lpa.setVisible(true);
