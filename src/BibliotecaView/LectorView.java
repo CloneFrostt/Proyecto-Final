@@ -9,6 +9,7 @@ private Lector lectorActual=null;
    
     public LectorView() {
         initComponents();
+        
     }
 
     @SuppressWarnings("unchecked")

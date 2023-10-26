@@ -1,8 +1,11 @@
 package BibliotecaView;
 
 import com.jtattoo.plaf.texture.TextureLookAndFeel;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -10,6 +13,8 @@ public class Menu extends javax.swing.JFrame {
     
     public Menu() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("MENU");
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -49,10 +54,10 @@ public class Menu extends javax.swing.JFrame {
         jMenu7.setText("jMenu7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1900, 2100));
+        setPreferredSize(new java.awt.Dimension(1300, 1140));
 
-        jDEscritorio.setBackground(new java.awt.Color(0, 102, 102));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BibliotecaView/Image20231011170238.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Biblioteca.png"))); // NOI18N
 
         jDEscritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -64,7 +69,7 @@ public class Menu extends javax.swing.JFrame {
         );
         jDEscritorioLayout.setVerticalGroup(
             jDEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1037, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jMenuBar1.setPreferredSize(new java.awt.Dimension(318, 60));
@@ -325,7 +330,7 @@ public class Menu extends javax.swing.JFrame {
                 } catch (UnsupportedLookAndFeelException ex) {
                     Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                new Menu().setVisible(true);
+             new Menu().setVisible(true);
             }
         });
     }
