@@ -1,11 +1,8 @@
 package BibliotecaView;
 
 import com.jtattoo.plaf.texture.TextureLookAndFeel;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -54,8 +51,6 @@ public class Menu extends javax.swing.JFrame {
         jMenu7.setText("jMenu7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1900, 2100));
-        setPreferredSize(new java.awt.Dimension(1300, 1140));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Biblioteca.png"))); // NOI18N
 
@@ -75,11 +70,6 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.setPreferredSize(new java.awt.Dimension(318, 60));
 
         jMListaLibDisp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/Lector.png"))); // NOI18N
-        jMListaLibDisp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMListaLibDispActionPerformed(evt);
-            }
-        });
 
         jMLector.setText("Formulario de Lector");
         jMLector.addActionListener(new java.awt.event.ActionListener() {
@@ -250,10 +240,6 @@ public class Menu extends javax.swing.JFrame {
         jDEscritorio.add(pv);
         jDEscritorio.moveToFront(pv);
     }//GEN-LAST:event_jMPrestamoActionPerformed
-
-    private void jMListaLibDispActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMListaLibDispActionPerformed
-
-    }//GEN-LAST:event_jMListaLibDispActionPerformed
 
     private void jMListLibPrestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMListLibPrestActionPerformed
         jDEscritorio.removeAll();

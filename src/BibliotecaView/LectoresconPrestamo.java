@@ -35,11 +35,6 @@ public class LectoresconPrestamo extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTable1KeyReleased(evt);
-            }
-        });
         jScrollPane1.setViewportView(jTable1);
 
         jRBVerTabla.setText("Ver Tabla");
@@ -104,10 +99,6 @@ public class LectoresconPrestamo extends javax.swing.JInternalFrame {
     private void jRBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBSalirActionPerformed
         this.dispose(); 
     }//GEN-LAST:event_jRBSalirActionPerformed
-
-    private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
-
-    }//GEN-LAST:event_jTable1KeyReleased
     private void armarCabeceraYCargar() {
         modelo.addColumn("Nro Socio");
         modelo.addColumn("Nombre y Apellido");

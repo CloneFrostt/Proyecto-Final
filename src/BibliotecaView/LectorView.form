@@ -151,9 +151,6 @@
     <Component class="javax.swing.JTextField" name="jTxtNroSocio">
     </Component>
     <Component class="javax.swing.JTextField" name="jTextNombre">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextNombreActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextDomicilio">
     </Component>

@@ -45,12 +45,6 @@ private Lector lectorActual=null;
 
         jLabel6.setText("Estado");
 
-        jTextNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextNombreActionPerformed(evt);
-            }
-        });
-
         jBBuscar.setText("Buscar");
         jBBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,10 +162,6 @@ private Lector lectorActual=null;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNombreActionPerformed
-
-    }//GEN-LAST:event_jTextNombreActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
        try {
