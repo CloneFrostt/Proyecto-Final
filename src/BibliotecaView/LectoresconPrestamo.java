@@ -1,8 +1,6 @@
 package BibliotecaView;
 import Data.PrestamoData;
-import Entidades.Ejemplar;
 import Entidades.Lector;
-import Entidades.Prestamo;
 import javax.swing.table.DefaultTableModel;
 
 public class LectoresconPrestamo extends javax.swing.JInternalFrame {
