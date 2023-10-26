@@ -179,14 +179,14 @@ public class PrestamoData {
     List<Libros> libros = new ArrayList<>();
  
      String sql="SELECT * FROM libro INNER JOIN ejemplar ON libro.idLibro = ejemplar.idLibro "
-             + " INNER JOIN prestamo ON ejemplar.idEjEmplar = prestamo.idEjemplar ";
+             + " INNER JOIN prestamo ON ejemplar.idEjEmplar = prestamo.idEjemplar AND Estado = 1";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ResultSet rs=ps.executeQuery();
             while (rs.next()){
             Libros lib = new Libros();
             lib.setIdLibro(rs.getInt("idLibro"));
-            lib.setIsbn(rs.getString("isbn"));
+            lib.setIsbn(rs.getInt("isbn"));
             lib.setTitulo(rs.getString ("Titulo"));
             lib.setAutor(rs.getString("Autor"));
             lib.setAnio(rs.getInt("Anio"));
@@ -207,7 +207,7 @@ public class PrestamoData {
   {
     List<Libros> libros = new ArrayList<>(); 
            String sql="SELECT * FROM libro INNER JOIN ejemplar ON libro.idLibro = ejemplar.idLibro "
-             + " INNER JOIN prestamo ON ejemplar.idEjEmplar = prestamo.idEjemplar  AND FechaI = ? ";
+             + " INNER JOIN prestamo ON ejemplar.idEjEmplar = prestamo.idEjemplar  AND FechaI = ? AND Estado = 1 ";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setDate(1, Date.valueOf(fecha));
@@ -216,7 +216,7 @@ public class PrestamoData {
             while (rs.next()){
             Libros lib = new Libros();
             lib.setIdLibro(rs.getInt("idLibro"));
-            lib.setIsbn(rs.getString("isbn"));
+            lib.setIsbn(rs.getInt("isbn"));
             lib.setTitulo(rs.getString ("Titulo"));
             lib.setAutor(rs.getString("Autor"));
             lib.setAnio(rs.getInt("Anio"));
@@ -238,7 +238,7 @@ public class PrestamoData {
  {
     List<Lector> lector = new ArrayList<>();
  
-          String sql="SELECT * FROM lector l, prestamo p WHERE  l.idLector = p.idLector ";
+          String sql="SELECT * FROM lector l, prestamo p WHERE  l.idLector = p.idLector  AND P.Estado = 1";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
            
@@ -267,7 +267,7 @@ public class PrestamoData {
   public List<Lector>listaLectoresPrestamoVencido(LocalDate fechaD){
     List<Lector> lector = new ArrayList<>();
  
-          String sql="SELECT * FROM lector l,prestamo p WHERE  l.idLector = p.idLector AND FechaF < ? ";
+          String sql="SELECT * FROM lector l,prestamo p WHERE  l.idLector = p.idLector AND FechaF < ?  AND P.Estado = 1";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
            ps.setDate(1,Date.valueOf(fechaD));
