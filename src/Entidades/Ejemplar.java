@@ -53,9 +53,7 @@ public class Ejemplar {
     }
 
     public void setEstado(String Estado) {
-        this.Estado = Estado;
-        
-        
+        this.Estado = Estado; 
     }
 
     public int getCantidad() {
