@@ -206,15 +206,15 @@ private Libros libroActual = null;
         try {
             
             String isbn = jTextISBN.getText();
-            if (!isbn.matches("\\d{13}")) {
-            JOptionPane.showMessageDialog(this,"No debe contener letras.");
-            return;          
-}
+            
             if(isbn.length()!=13){
             JOptionPane.showMessageDialog(this, "El ISBN debe contener 13 caracteres");
             return;
             }
-            
+            if (!isbn.matches("\\d{13}")) {
+            JOptionPane.showMessageDialog(this,"El ISBN no debe contener letras.");
+            return;          
+}
             String titulo = jTextTitulo.getText();
             String autor = jTextAutor.getText();
             int anio = Integer.parseInt(jTextAnio.getText());

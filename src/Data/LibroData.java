@@ -212,7 +212,7 @@ public Libros buscarLibroPorIsbn(String isbn) {
 public List<Libros>listarLibrosPorAutor(String autor){
 List<Libros> libro = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM libro WHERE Estado = 1 AND Autor = ?";
+            String sql = "SELECT * FROM libro WHERE Estado = 1 LIKE Autor = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, autor);
             ResultSet rs = ps.executeQuery();

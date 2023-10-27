@@ -186,7 +186,7 @@ public class PrestamoData {
             while (rs.next()){
             Libros lib = new Libros();
             lib.setIdLibro(rs.getInt("idLibro"));
-            lib.setIsbn(rs.getInt("isbn"));
+            lib.setIsbn(rs.getString("isbn"));
             lib.setTitulo(rs.getString ("Titulo"));
             lib.setAutor(rs.getString("Autor"));
             lib.setAnio(rs.getInt("Anio"));
@@ -216,7 +216,7 @@ public class PrestamoData {
             while (rs.next()){
             Libros lib = new Libros();
             lib.setIdLibro(rs.getInt("idLibro"));
-            lib.setIsbn(rs.getInt("isbn"));
+            lib.setIsbn(rs.getString("isbn"));
             lib.setTitulo(rs.getString ("Titulo"));
             lib.setAutor(rs.getString("Autor"));
             lib.setAnio(rs.getInt("Anio"));
