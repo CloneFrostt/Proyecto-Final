@@ -31,16 +31,30 @@ public class LibrosPorAutor extends javax.swing.JInternalFrame {
         jBSalir = new javax.swing.JButton();
         jBLimpiar = new javax.swing.JButton();
 
-        jLabel1.setText("Lista de Libros Por Autor");
+        setBackground(new java.awt.Color(204, 204, 0));
 
+        jLabel1.setFont(new java.awt.Font("Viner Hand ITC", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setText("Lista de Libros Por Autor: ");
+
+        jLabel2.setFont(new java.awt.Font("Viner Hand ITC", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Ingrese un Autor:");
 
+        jTFAutor.setFont(new java.awt.Font("Viner Hand ITC", 0, 11)); // NOI18N
         jTFAutor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTFAutorKeyReleased(evt);
             }
         });
 
+        jScrollPane1.setBackground(new java.awt.Color(102, 102, 102));
+        jScrollPane1.setForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setFont(new java.awt.Font("Viner Hand ITC", 1, 10)); // NOI18N
+
+        jTLAutor.setBackground(new java.awt.Color(102, 102, 102));
+        jTLAutor.setFont(new java.awt.Font("Viner Hand ITC", 1, 10)); // NOI18N
+        jTLAutor.setForeground(new java.awt.Color(255, 255, 255));
         jTLAutor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -54,6 +68,9 @@ public class LibrosPorAutor extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTLAutor);
 
+        jBSalir.setBackground(new java.awt.Color(102, 102, 102));
+        jBSalir.setFont(new java.awt.Font("Viner Hand ITC", 1, 18)); // NOI18N
+        jBSalir.setForeground(new java.awt.Color(255, 255, 255));
         jBSalir.setText("Salir");
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,6 +78,9 @@ public class LibrosPorAutor extends javax.swing.JInternalFrame {
             }
         });
 
+        jBLimpiar.setBackground(new java.awt.Color(102, 102, 102));
+        jBLimpiar.setFont(new java.awt.Font("Viner Hand ITC", 0, 11)); // NOI18N
+        jBLimpiar.setForeground(new java.awt.Color(255, 255, 255));
         jBLimpiar.setText("Limpiar");
         jBLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,26 +93,23 @@ public class LibrosPorAutor extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(153, 153, 153)
+                .addComponent(jBSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(119, 119, 119)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTFAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jBLimpiar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jBSalir)))
+                                .addComponent(jBLimpiar)))
+                        .addGap(0, 97, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -104,11 +121,11 @@ public class LibrosPorAutor extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addComponent(jTFAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBLimpiar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(18, 18, 18)
                 .addComponent(jBSalir)
-                .addContainerGap())
+                .addGap(30, 30, 30))
         );
 
         pack();

@@ -23,8 +23,18 @@ public class LectoresconPrestamo extends javax.swing.JInternalFrame {
         jRBVerTabla = new javax.swing.JRadioButton();
         jRBSalir = new javax.swing.JRadioButton();
 
-        jLabel1.setText("Lista de Lectores que Pidieron un prestamo:");
+        setBackground(new java.awt.Color(102, 0, 102));
 
+        jLabel1.setFont(new java.awt.Font("Viner Hand ITC", 1, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("        Lista de Lectores que Pidieron un prestamo:");
+
+        jScrollPane1.setBackground(new java.awt.Color(102, 0, 102));
+        jScrollPane1.setForeground(new java.awt.Color(255, 255, 255));
+
+        jTable1.setBackground(new java.awt.Color(102, 102, 102));
+        jTable1.setFont(new java.awt.Font("Viner Hand ITC", 1, 14)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -35,6 +45,9 @@ public class LectoresconPrestamo extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jRBVerTabla.setBackground(new java.awt.Color(102, 0, 102));
+        jRBVerTabla.setFont(new java.awt.Font("Viner Hand ITC", 1, 14)); // NOI18N
+        jRBVerTabla.setForeground(new java.awt.Color(255, 255, 255));
         jRBVerTabla.setText("Ver Tabla");
         jRBVerTabla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -42,6 +55,9 @@ public class LectoresconPrestamo extends javax.swing.JInternalFrame {
             }
         });
 
+        jRBSalir.setBackground(new java.awt.Color(102, 0, 102));
+        jRBSalir.setFont(new java.awt.Font("Viner Hand ITC", 1, 14)); // NOI18N
+        jRBSalir.setForeground(new java.awt.Color(255, 255, 255));
         jRBSalir.setText("Salir");
         jRBSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,27 +71,23 @@ public class LectoresconPrestamo extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(98, 98, 98)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(80, 80, 80)
-                                .addComponent(jRBVerTabla)
-                                .addGap(100, 100, 100)
-                                .addComponent(jRBSalir)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(80, 80, 80)
+                        .addComponent(jRBVerTabla)
+                        .addGap(100, 100, 100)
+                        .addComponent(jRBSalir)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRBVerTabla)
                     .addComponent(jRBSalir))
