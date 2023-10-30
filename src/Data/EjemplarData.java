@@ -65,12 +65,12 @@ public class EjemplarData {
 
    
 
-    public void eliminarEjemplar(int id) {
-            String sql = "DELETE FROM ejemplar WHERE idEjemplar=?";
+    public void eliminarEjemplar(int codigo) {
+            String sql = "DELETE FROM ejemplar WHERE Codigo=?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
+            ps.setInt(1, codigo);
             int exito = ps.executeUpdate();
             if (exito > 0) {
                 JOptionPane.showMessageDialog(null, "Ejemplar eliminado con exito.");

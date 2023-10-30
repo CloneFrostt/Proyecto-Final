@@ -276,11 +276,10 @@ public class EjemplarView extends javax.swing.JInternalFrame {
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
         try {
             int codigo = Integer.parseInt(jTextCodigo.getText());
-            ejeActual = ejeData.buscarEjemplarPorCodigo(codigo);
+            ejeData.eliminarEjemplar(codigo);
             if (ejeActual != null) {
-                ejeData.eliminarEjemplar(ejeActual.getIdEjemplar());
-            } else {
-                JOptionPane.showMessageDialog(null, "Error, usted no ha seleccionado ningun ejemplar.");
+               
+                JOptionPane.showMessageDialog(null, "Error, usted no ha seleccionado ningun ejemplar para eliminar.");
             }
         } catch (NumberFormatException nf) {
             JOptionPane.showMessageDialog(this, "Usted no ingreso un numero");

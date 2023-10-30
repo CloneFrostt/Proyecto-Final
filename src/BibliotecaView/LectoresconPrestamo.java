@@ -6,7 +6,11 @@ import javax.swing.table.DefaultTableModel;
 public class LectoresconPrestamo extends javax.swing.JInternalFrame {
 
     private PrestamoData pd = new PrestamoData();
-    private DefaultTableModel modelo = new DefaultTableModel();
+    private DefaultTableModel modelo = new DefaultTableModel(){
+        public boolean isCellEditable(int fila, int columna) {        
+            return false;
+        }
+    };
     private Lector L1=null;
     public LectoresconPrestamo() {
         initComponents();

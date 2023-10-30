@@ -8,7 +8,11 @@ import javax.swing.table.DefaultTableModel;
 
 public class PrestamosEnFechaDet extends javax.swing.JInternalFrame {
 
-    private DefaultTableModel modelo = new DefaultTableModel();
+    private DefaultTableModel modelo = new DefaultTableModel(){
+        public boolean isCellEditable(int fila, int columna) {        
+            return false;
+        }
+    };
     private PrestamoData pd = new PrestamoData();
     private Prestamo prestamoActual = null;
 

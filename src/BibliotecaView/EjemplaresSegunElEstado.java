@@ -6,7 +6,11 @@ import javax.swing.table.DefaultTableModel;
 public class EjemplaresSegunElEstado extends javax.swing.JInternalFrame {
 int i=0;    
 private EjemplarData ed = new EjemplarData();
-   private DefaultTableModel modelo = new DefaultTableModel();
+   private DefaultTableModel modelo = new DefaultTableModel(){
+        public boolean isCellEditable(int fila, int columna) {        
+            return false;
+        }
+    };
 private Ejemplar e1=null;
     public EjemplaresSegunElEstado() {
         initComponents();
