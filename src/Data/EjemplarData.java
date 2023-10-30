@@ -66,7 +66,7 @@ public class EjemplarData {
    
 
     public void eliminarEjemplar(int codigo) {
-            String sql = "DELETE FROM ejemplar WHERE Codigo=?";
+            String sql = "UPDATE ejemplar SET Estado = 'Inactivo' WHERE Codigo=?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);

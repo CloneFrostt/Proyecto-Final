@@ -69,7 +69,7 @@ public class EjemplarView extends javax.swing.JInternalFrame {
         jCEstado.setBackground(new java.awt.Color(204, 204, 204));
         jCEstado.setEditable(true);
         jCEstado.setFont(new java.awt.Font("Viner Hand ITC", 0, 11)); // NOI18N
-        jCEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Disponible en Biblioteca", "Prestado", "Retraso", "Reparacion" }));
+        jCEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Disponible en Biblioteca", "Prestado", "Retraso", "Reparacion", "Inactivo" }));
 
         jTextCantEj.setBackground(new java.awt.Color(204, 204, 204));
         jTextCantEj.setFont(new java.awt.Font("Viner Hand ITC", 0, 11)); // NOI18N
@@ -235,8 +235,9 @@ public class EjemplarView extends javax.swing.JInternalFrame {
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
         try {
             int codigo = Integer.parseInt(jTextCodigo.getText());
+            
             ejeActual = ejeData.buscarEjemplarPorCodigo(codigo);
-            if (ejeActual != null) {
+            if (ejeActual != null && !"Inactivo".equals(ejeActual.isEstado())) {
                 jTextIdLibro.setText(ejeActual.getIdLibro().getIdLibro() + "");
                 jCEstado.setSelectedItem(ejeActual.isEstado() );
                 jTextCantEj.setText(ejeActual.getCantidad() + "");
@@ -277,10 +278,8 @@ public class EjemplarView extends javax.swing.JInternalFrame {
         try {
             int codigo = Integer.parseInt(jTextCodigo.getText());
             ejeData.eliminarEjemplar(codigo);
-            if (ejeActual != null) {
-               
-                JOptionPane.showMessageDialog(null, "Error, usted no ha seleccionado ningun ejemplar para eliminar.");
-            }
+            limpiarCampos();
+           ejeActual = null;
         } catch (NumberFormatException nf) {
             JOptionPane.showMessageDialog(this, "Usted no ingreso un numero");
         }
