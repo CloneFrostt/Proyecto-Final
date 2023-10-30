@@ -40,7 +40,7 @@ public class EjemplarData {
         List<Ejemplar> ejemplar = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM ejemplar WHERE estado = ?";
+            String sql = "SELECT * FROM ejemplar WHERE Estado = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, estado);
             ResultSet rs = ps.executeQuery();
@@ -66,7 +66,7 @@ public class EjemplarData {
    
 
     public void eliminarEjemplar(int id) {
-        String sql = "DELETE FROM ejemplar WHERE idEjemplar=?";
+            String sql = "DELETE FROM ejemplar WHERE idEjemplar=?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -86,25 +86,24 @@ public class EjemplarData {
 
     public void modificarEjemplar(Ejemplar ej) {
 
-        String sql = "UPDATE ejemplar SET Codigo=?,idLibro=?,Estado=?,Cantidad=?"
-                + " WHERE idEjemplar=?";
+        String sql = "UPDATE ejemplar SET idLibro=?,Estado=?,Cantidad=?"
+                + " WHERE Codigo=?";
         PreparedStatement ps = null;
 
         try {
             ps = con.prepareStatement(sql);
-
-            ps.setInt(1, ej.getCodigo());
-
-            ps.setInt(2, ej.getIdLibro().getIdLibro());
-            ps.setString(3, ej.isEstado());
-            ps.setInt(4, ej.getCantidad());
-            ps.setInt(5, ej.getIdEjemplar());
+            
+            ps.setInt(1, ej.getIdLibro().getIdLibro());
+            ps.setString(2, ej.isEstado());
+            ps.setInt(3, ej.getCantidad());
+            ps.setInt(4, ej.getCodigo());
+            
             int exito = ps.executeUpdate();
       
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Modificado Exitosamente.");
             } else {
-                JOptionPane.showMessageDialog(null, "El Ejemplar ya existe");
+                JOptionPane.showMessageDialog(null, "Seleccione un ejemplar");
             }
 
         } catch (SQLException ex) {

@@ -10,6 +10,7 @@ public class EjemplarView extends javax.swing.JInternalFrame {
     private EjemplarData ejeData = new EjemplarData();
     private Ejemplar ejeActual = null;
     private LibroData ld =new LibroData();
+    private Libros lib = null;
 
     public EjemplarView() {
         initComponents();
@@ -187,7 +188,7 @@ public class EjemplarView extends javax.swing.JInternalFrame {
                 ejeActual.setIdLibro(L);
                 ejeActual.setEstado(estado);
                 ejeActual.setCantidad(cantidad);
-                ejeData.cargarEjemplar(ejeActual);
+                ejeData.modificarEjemplar(ejeActual);
             }
         } catch (NumberFormatException nf) {
             JOptionPane.showMessageDialog(this, "Usted no ingreso un Codigo valido");
@@ -200,8 +201,8 @@ public class EjemplarView extends javax.swing.JInternalFrame {
             int codigo = Integer.parseInt(jTextCodigo.getText());
             ejeActual = ejeData.buscarEjemplarPorCodigo(codigo);
             if (ejeActual != null) {
-                jTextIdLibro.setText(ejeActual.getIdLibro() + "");
-                jCEstado.setSelectedItem(ejeActual.isEstado() + "");
+                jTextIdLibro.setText(ejeActual.getIdLibro().getIdLibro() + "");
+                jCEstado.setSelectedItem(ejeActual.isEstado() );
                 jTextCantEj.setText(ejeActual.getCantidad() + "");
             }
         } catch (NumberFormatException nf) {
@@ -218,16 +219,14 @@ public class EjemplarView extends javax.swing.JInternalFrame {
 
             int codigo = Integer.parseInt(jTextCodigo.getText());
             int idLibro = Integer.parseInt(jTextIdLibro.getText());
-              Libros L = ld.buscarLibroPorId(idLibro);
-            String estado = (jCEstado.getSelectedItem().toString());
+           lib = ld.buscarLibroPorId(idLibro);
+            String estado = (String) (jCEstado.getSelectedItem());
             int cantidad = Integer.parseInt(jTextCantEj.getText());
-
-            if (ejeActual == null) {
-                ejeActual = new Ejemplar(codigo, L, estado, cantidad);
-                ejeData.modificarEjemplar(ejeActual);
-            } else {
+            ejeActual = ejeData.buscarEjemplarPorCodigo(codigo);
+            if (ejeActual != null) {
+               
                 ejeActual.setCodigo(codigo);
-                ejeActual.setIdLibro(L);
+                ejeActual.setIdLibro(lib);
                 ejeActual.setEstado(estado);
                 ejeActual.setCantidad(cantidad);
                 ejeData.modificarEjemplar(ejeActual);
@@ -240,6 +239,8 @@ public class EjemplarView extends javax.swing.JInternalFrame {
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
         try {
+            int codigo = Integer.parseInt(jTextCodigo.getText());
+            ejeActual = ejeData.buscarEjemplarPorCodigo(codigo);
             if (ejeActual != null) {
                 ejeData.eliminarEjemplar(ejeActual.getIdEjemplar());
             } else {
@@ -257,8 +258,10 @@ public class EjemplarView extends javax.swing.JInternalFrame {
     }
 
     private void limpiarCampos() {
+        
         jTextCodigo.setText("");
         jTextIdLibro.setText("");
+        jCEstado.setSelectedItem("Seleccionar");
         jTextCantEj.setText("");
     }//GEN-LAST:event_jBLimpiarActionPerformed
 

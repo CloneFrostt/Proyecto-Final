@@ -346,7 +346,7 @@ public class PrestamoView extends javax.swing.JInternalFrame {
                 limpiarCampos();
 
             } else {
-                JOptionPane.showMessageDialog(null, "Error, usted no ha seleccionado a ningun Lector.");
+                JOptionPane.showMessageDialog(null, "Error, usted no ha seleccionado ningun Prestamo.");
             }
         } catch (NumberFormatException nf) {
             JOptionPane.showMessageDialog(this, "Usted no ingreso un codigo valido");

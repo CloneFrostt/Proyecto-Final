@@ -72,8 +72,7 @@ public class LibroData {
             ps.setString(4, libro.getEditorial());
             ps.setInt(5, libro.getIdLibro());
             int exito = ps.executeUpdate();
-            System.out.println(exito);
-            System.out.println(libro.getIdLibro());
+        
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Modificado Exitosamente.");
             } else {
