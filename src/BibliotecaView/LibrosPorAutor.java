@@ -142,6 +142,7 @@ public class LibrosPorAutor extends javax.swing.JInternalFrame {
 
     private void jTFAutorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFAutorKeyReleased
         borrarFilas();
+       
         for (Libros lib : ld.listarLibrosPorAutor(jTFAutor.getText())) {
             if (lib.getAutor().startsWith(jTFAutor.getText())) {
 

@@ -209,7 +209,7 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDEscritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 1358, Short.MAX_VALUE)
+            .addComponent(jDEscritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 1294, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
